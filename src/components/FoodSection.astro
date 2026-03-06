@@ -1,5 +1,5 @@
 ---
-// Image served from public/images/snap-hero.png
+// Image served from public/images/snap food hero.png
 
 const features = [
   {
@@ -47,8 +47,8 @@ const features = [
     <!-- Food Image -->
     <div class="mb-16" data-animate="scale-in">
       <img
-        src="/images/snap-hero.png"
-        alt="Healthy meal prep with fresh vegetables, grains, and lean proteins"
+        src="/images/snap food hero.png"
+        alt="Grilled steak bowl meal prep with roasted sweet potato, black beans, chimichurri, and fresh herbs"
         class="w-full rounded-2xl object-cover aspect-[16/9]"
       />
     </div>
@@ -72,6 +72,113 @@ const features = [
           </div>
         ))}
       </div>
+
+      <!-- Food Video -->
+      <div class="mt-16 relative overflow-hidden rounded-2xl" data-animate="scale-in">
+        <video
+          id="food-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          class="w-full object-cover aspect-[16/9]"
+          poster="/images/snap food hero.png"
+        >
+          <source src="/videos/snap-hero.mp4" type="video/mp4" />
+        </video>
+
+        <!-- Controls -->
+        <div class="absolute bottom-5 left-5 flex items-center gap-3">
+          <!-- Restart Button -->
+          <button
+            id="food-restart"
+            class="w-10 h-10 rounded-full bg-dark/60 backdrop-blur-sm flex items-center justify-center hover:bg-dark/80 transition-colors cursor-pointer"
+            aria-label="Restart video"
+          >
+            <svg class="w-4.5 h-4.5 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+            </svg>
+          </button>
+
+          <!-- Play/Pause Button -->
+          <button
+            id="food-play-pause"
+            class="w-10 h-10 rounded-full bg-dark/60 backdrop-blur-sm flex items-center justify-center hover:bg-dark/80 transition-colors cursor-pointer"
+            aria-label="Pause video"
+          >
+            <svg id="food-pause-icon" class="w-5 h-5 text-cream" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M5 4h3v12H5V4zm7 0h3v12h-3V4z"/>
+            </svg>
+            <svg id="food-play-icon" class="w-5 h-5 text-cream hidden" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M6 4l10 6-10 6V4z"/>
+            </svg>
+          </button>
+
+          <!-- Mute/Unmute Button -->
+          <button
+            id="food-mute"
+            class="w-10 h-10 rounded-full bg-dark/60 backdrop-blur-sm flex items-center justify-center hover:bg-dark/80 transition-colors cursor-pointer"
+            aria-label="Unmute video"
+          >
+            <svg id="food-muted-icon" class="w-5 h-5 text-cream" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+              <line x1="23" y1="9" x2="17" y2="15"/>
+              <line x1="17" y1="9" x2="23" y2="15"/>
+            </svg>
+            <svg id="food-unmuted-icon" class="w-5 h-5 text-cream hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const foodVideo = document.getElementById('food-video') as HTMLVideoElement;
+  const foodPlayPauseBtn = document.getElementById('food-play-pause');
+  const foodPauseIcon = document.getElementById('food-pause-icon');
+  const foodPlayIcon = document.getElementById('food-play-icon');
+  const foodRestartBtn = document.getElementById('food-restart');
+  const foodMuteBtn = document.getElementById('food-mute');
+  const foodMutedIcon = document.getElementById('food-muted-icon');
+  const foodUnmutedIcon = document.getElementById('food-unmuted-icon');
+
+  foodPlayPauseBtn?.addEventListener('click', () => {
+    if (foodVideo.paused) {
+      foodVideo.play();
+      foodPauseIcon?.classList.remove('hidden');
+      foodPlayIcon?.classList.add('hidden');
+      foodPlayPauseBtn.setAttribute('aria-label', 'Pause video');
+    } else {
+      foodVideo.pause();
+      foodPauseIcon?.classList.add('hidden');
+      foodPlayIcon?.classList.remove('hidden');
+      foodPlayPauseBtn.setAttribute('aria-label', 'Play video');
+    }
+  });
+
+  foodRestartBtn?.addEventListener('click', () => {
+    foodVideo.currentTime = 0;
+    foodVideo.play();
+    foodPauseIcon?.classList.remove('hidden');
+    foodPlayIcon?.classList.add('hidden');
+    foodPlayPauseBtn?.setAttribute('aria-label', 'Pause video');
+  });
+
+  foodMuteBtn?.addEventListener('click', () => {
+    foodVideo.muted = !foodVideo.muted;
+    if (foodVideo.muted) {
+      foodMutedIcon?.classList.remove('hidden');
+      foodUnmutedIcon?.classList.add('hidden');
+      foodMuteBtn.setAttribute('aria-label', 'Unmute video');
+    } else {
+      foodMutedIcon?.classList.add('hidden');
+      foodUnmutedIcon?.classList.remove('hidden');
+      foodMuteBtn.setAttribute('aria-label', 'Mute video');
+    }
+  });
+</script>
