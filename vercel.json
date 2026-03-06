@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/get-started",
+      "permanent": false
+    }
+  ],
+  "cleanUrls": true
+}

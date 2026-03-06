@@ -6,54 +6,56 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
 
 <Layout title="Nimbus Healthcare - Intake">
   <main>
-    <section class="bg-[#1A1816] min-h-screen flex flex-col" id="intake-app">
+    <section class="bg-[#1A1816] h-screen flex flex-col overflow-hidden" id="intake-app">
       <!-- Progress Bar -->
-      <div class="w-full h-[3px] bg-cream/5 intake-progress-track">
+      <div class="w-full h-[3px] bg-cream/5 intake-progress-track shrink-0">
         <div class="h-full bg-teal transition-all duration-500 ease-out" id="progress-bar" style="width: 5.56%"></div>
+      </div>
+
+      <!-- Sticky Top Bar -->
+      <div class="px-6 shrink-0 intake-sticky-header">
+        <div class="max-w-[620px] mx-auto relative flex items-center justify-between py-5">
+          <!-- Left: Back -->
+          <div class="flex items-center gap-3">
+            <button
+              id="intake-back"
+              class="w-10 h-10 rounded-full border border-cream/15 flex items-center justify-center text-cream/50 hover:text-cream hover:border-cream/30 transition-colors cursor-pointer intake-back-btn"
+              aria-label="Go back"
+            >
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <span class="font-montserrat text-cream/50 text-xs font-semibold tracking-[0.15em] uppercase intake-muted" id="intake-phase">Back</span>
+          </div>
+          <!-- Center: Logo -->
+          <div class="absolute left-1/2 -translate-x-1/2">
+            <img src={logoWhite.src} alt="Nimbus Healthcare" class="h-[30px]" id="logo-white" />
+            <img src={logoBlack.src} alt="Nimbus Healthcare" class="h-[30px] hidden" id="logo-black" />
+          </div>
+          <!-- Right: Counter + Theme -->
+          <div class="flex items-center gap-4">
+            <span class="font-inter text-cream/40 text-sm intake-muted" id="intake-counter">6%</span>
+            <button
+              id="theme-toggle"
+              class="w-10 h-10 rounded-full border border-cream/15 flex items-center justify-center text-cream/50 hover:text-cream hover:border-cream/30 transition-colors cursor-pointer intake-back-btn"
+              aria-label="Toggle light mode"
+            >
+              <svg id="icon-sun" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.3"/>
+                <path d="M9 2v1.5M9 14.5V16M2 9h1.5M14.5 9H16M4.05 4.05l1.06 1.06M12.89 12.89l1.06 1.06M4.05 13.95l1.06-1.06M12.89 5.11l1.06-1.06" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+              <svg id="icon-moon" width="18" height="18" viewBox="0 0 18 18" fill="none" class="hidden">
+                <path d="M15.36 10.68A6.5 6.5 0 017.32 2.64a7.5 7.5 0 108.04 8.04z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Scrollable Content -->
       <div class="flex-1 overflow-y-auto px-6 pb-8" id="intake-content">
         <div class="max-w-[620px] mx-auto">
-
-          <!-- Top Bar (persistent) -->
-          <div class="relative flex items-center justify-between py-5">
-            <!-- Left: Back -->
-            <div class="flex items-center gap-3">
-              <button
-                id="intake-back"
-                class="w-10 h-10 rounded-full border border-cream/15 flex items-center justify-center text-cream/50 hover:text-cream hover:border-cream/30 transition-colors cursor-pointer intake-back-btn"
-                aria-label="Go back"
-              >
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <span class="font-montserrat text-cream/50 text-xs font-semibold tracking-[0.15em] uppercase intake-muted" id="intake-phase">Back</span>
-            </div>
-            <!-- Center: Logo -->
-            <div class="absolute left-1/2 -translate-x-1/2">
-              <img src={logoWhite.src} alt="Nimbus Healthcare" class="h-[30px]" id="logo-white" />
-              <img src={logoBlack.src} alt="Nimbus Healthcare" class="h-[30px] hidden" id="logo-black" />
-            </div>
-            <!-- Right: Counter + Theme -->
-            <div class="flex items-center gap-4">
-              <span class="font-inter text-cream/40 text-sm intake-muted" id="intake-counter">6%</span>
-              <button
-                id="theme-toggle"
-                class="w-10 h-10 rounded-full border border-cream/15 flex items-center justify-center text-cream/50 hover:text-cream hover:border-cream/30 transition-colors cursor-pointer intake-back-btn"
-                aria-label="Toggle light mode"
-              >
-                <svg id="icon-sun" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <circle cx="9" cy="9" r="3.5" stroke="currentColor" stroke-width="1.3"/>
-                  <path d="M9 2v1.5M9 14.5V16M2 9h1.5M14.5 9H16M4.05 4.05l1.06 1.06M12.89 12.89l1.06 1.06M4.05 13.95l1.06-1.06M12.89 5.11l1.06-1.06" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-                </svg>
-                <svg id="icon-moon" width="18" height="18" viewBox="0 0 18 18" fill="none" class="hidden">
-                  <path d="M15.36 10.68A6.5 6.5 0 017.32 2.64a7.5 7.5 0 108.04 8.04z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-            </div>
-          </div>
 
           <!-- ========== STEP 1: State Selection ========== -->
 
@@ -103,9 +105,16 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
               <button class="state-btn">Wyoming</button>
             </div>
 
-            <p class="font-inter text-cream/30 text-sm text-center mt-6 cursor-pointer hover:text-cream/50 transition-colors intake-subtle">
+            <p id="state-not-listed" class="font-inter text-cream/30 text-sm text-center mt-6 cursor-pointer hover:text-cream/50 transition-colors intake-subtle">
               State not on the list?
             </p>
+
+            <!-- Not-served state message -->
+            <div id="state-not-msg" class="hidden mt-4 rounded-2xl border border-cream/10 bg-cream/[0.03] px-5 py-5">
+              <p class="font-inter text-cream/70 text-base leading-[1.7] intake-body">
+                We're expanding! We don't serve your state yet, but we're working on it. Check back soon or reach us at <a href="mailto:support@nimbushealthcare.com" class="text-teal hover:underline">support@nimbushealthcare.com</a>
+              </p>
+            </div>
           </div>
 
           <!-- Step 1: Collapsed -->
@@ -272,41 +281,21 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
 
             <div class="grid grid-cols-2 gap-4" id="goals-grid">
               <button class="goal-btn" data-value="Lose weight">
-                <svg class="goal-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path d="M14 3v4M14 7L7 14M14 7l7 7M5 16a2 2 0 002 2h2l3-4M23 16a2 2 0 01-2 2h-2l-3-4M14 22v3M10 25h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
                 <span class="font-inter text-cream text-base font-medium intake-heading">Lose weight</span>
               </button>
               <button class="goal-btn" data-value="Feel more energy">
-                <svg class="goal-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path d="M15.5 4L9 15h5l-1.5 9L20 13h-5L15.5 4z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
                 <span class="font-inter text-cream text-base font-medium intake-heading">Feel more energy</span>
               </button>
               <button class="goal-btn" data-value="Improve health markers">
-                <svg class="goal-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path d="M4 22V12M10 22V8M16 22V14M22 22V6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
                 <span class="font-inter text-cream text-base font-medium intake-heading">Improve health markers</span>
               </button>
               <button class="goal-btn" data-value="Build confidence">
-                <svg class="goal-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path d="M14 4l3 6h6.5l-5 4.5 2 6.5-6.5-4-6.5 4 2-6.5-5-4.5H11l3-6z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
                 <span class="font-inter text-cream text-base font-medium intake-heading">Build confidence</span>
               </button>
               <button class="goal-btn" data-value="Better mobility">
-                <svg class="goal-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <circle cx="18" cy="5" r="2.5" stroke="currentColor" stroke-width="1.4"/>
-                  <path d="M13 11l3-1.5 2.5 3-3 4.5 4.5 6M13 11l-4.5 5.5M13 11l.5 6.5M8 24l3.5-6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
                 <span class="font-inter text-cream text-base font-medium intake-heading">Better mobility</span>
               </button>
               <button class="goal-btn" data-value="Sleep better">
-                <svg class="goal-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <path d="M22 15.5A8.5 8.5 0 0112.5 6a8.5 8.5 0 109.5 9.5z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M19 4l2 2M22 7l2 2M20 2v1M24 6h1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-                </svg>
                 <span class="font-inter text-cream text-base font-medium intake-heading">Sleep better</span>
               </button>
             </div>
@@ -353,6 +342,1064 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
               <button class="option-btn" data-value="No, this would be my first time">No, this would be my first time</button>
               <button class="option-btn" data-value="Honestly, I'm not sure">Honestly, I'm not sure</button>
             </div>
+          </div>
+
+          <!-- Step 5: Collapsed -->
+          <div id="step-5-collapsed" class="hidden">
+            <div class="flex items-center justify-between py-2">
+              <div>
+                <p class="font-montserrat text-teal text-[10px] font-semibold tracking-[0.15em] uppercase mb-1 intake-label">Building Your Plan</p>
+                <p class="font-inter text-cream/50 text-sm intake-body">Have you tried a GLP-1 before?</p>
+              </div>
+              <button class="edit-step-btn flex items-center gap-2 border border-cream/15 rounded-full px-4 py-2 text-cream text-sm font-inter font-medium hover:border-cream/30 transition-colors cursor-pointer intake-back-btn intake-heading" data-edit-step="5">
+                <span id="step-5-answer">—</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M10.08 1.92a1.5 1.5 0 012.12 0l.38.38a1.5 1.5 0 010 2.12L5.5 11.5 2 12.5l1-3.5 7.08-7.08z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <div class="border-t border-cream/10 mt-4 intake-border"></div>
+          </div>
+
+          <!-- ========== STEP 6: Account Setup ========== -->
+          <div id="step-6-active" class="hidden mt-8">
+            <p class="font-montserrat text-teal text-xs font-semibold tracking-[0.15em] uppercase mb-2 intake-label">Building Your Plan</p>
+            <h2 class="font-fraunces text-cream text-[clamp(28px,4vw,40px)] leading-[1.15] tracking-[-0.02em] mb-4 intake-heading">
+              Let's set up your account
+            </h2>
+            <p class="font-inter text-cream/50 text-base leading-[1.6] mb-10 intake-body">
+              Just a quick step so I can save your progress and show you your options.
+            </p>
+
+            <!-- Email input -->
+            <label class="block mb-2">
+              <span class="font-inter text-cream font-semibold text-base intake-bold">Email address</span>
+            </label>
+            <input
+              type="email"
+              id="account-email"
+              placeholder="you@example.com"
+              class="account-input mb-6 intake-heading"
+            />
+
+            <!-- Password input -->
+            <label class="block mb-2">
+              <span class="font-inter text-cream font-semibold text-base intake-bold">Create a password</span>
+            </label>
+            <input
+              type="password"
+              id="account-password"
+              placeholder="At least 8 characters"
+              class="account-input mb-8 intake-heading"
+            />
+
+            <!-- Continue button -->
+            <button
+              id="step-6-continue"
+              class="w-full bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-base rounded-full px-10 py-4 transition-colors cursor-pointer mb-6"
+            >
+              Continue
+            </button>
+
+            <!-- Divider -->
+            <div class="flex items-center gap-4 mb-6">
+              <div class="flex-1 h-px bg-cream/10 intake-border-bg"></div>
+              <span class="font-inter text-cream/30 text-sm intake-muted">or</span>
+              <div class="flex-1 h-px bg-cream/10 intake-border-bg"></div>
+            </div>
+
+            <!-- Social buttons -->
+            <div class="flex flex-col gap-3">
+              <button class="account-social-btn" id="btn-google">
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+                <span>Continue with Google</span>
+              </button>
+              <button class="account-social-btn" id="btn-apple">
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.32 2.32-2.12 4.53-3.74 4.25z"/>
+                </svg>
+                <span>Continue with Apple</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 6: Collapsed -->
+          <div id="step-6-collapsed" class="hidden">
+            <div class="flex items-center justify-between py-2">
+              <div>
+                <p class="font-montserrat text-teal text-[10px] font-semibold tracking-[0.15em] uppercase mb-1 intake-label">Building Your Plan</p>
+                <p class="font-inter text-cream/50 text-sm intake-body">Your account</p>
+              </div>
+              <button class="edit-step-btn flex items-center gap-2 border border-cream/15 rounded-full px-4 py-2 text-cream text-sm font-inter font-medium hover:border-cream/30 transition-colors cursor-pointer intake-back-btn intake-heading" data-edit-step="6">
+                <span id="step-6-answer">—</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M10.08 1.92a1.5 1.5 0 012.12 0l.38.38a1.5 1.5 0 010 2.12L5.5 11.5 2 12.5l1-3.5 7.08-7.08z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <div class="border-t border-cream/10 mt-4 intake-border"></div>
+          </div>
+
+          <!-- ========== STEP 7: Your Plan ========== -->
+          <div id="step-7-active" class="hidden mt-8">
+            <p class="font-montserrat text-teal text-xs font-semibold tracking-[0.15em] uppercase mb-2 intake-label">Building Your Plan</p>
+            <h2 class="font-fraunces text-cream text-[clamp(28px,4vw,40px)] leading-[1.15] tracking-[-0.02em] mb-3 intake-heading">
+              I've put together a plan just for you
+            </h2>
+            <p class="font-inter text-cream/50 text-base leading-[1.6] mb-8 intake-body">
+              Based on your goals, here's what I'd recommend.
+            </p>
+
+            <!-- Medication cards -->
+            <div class="flex flex-col gap-4 mb-8" id="med-cards">
+
+              <!-- Semaglutide card (pre-selected) -->
+              <div class="plan-med-card selected" data-med="sema" id="card-sema">
+                <div class="plan-card-badge">Recommended for you</div>
+                <h3 class="font-fraunces text-cream text-xl leading-[1.2] mb-1 intake-heading">Compounded Semaglutide + L-Carnitine</h3>
+                <p class="font-inter text-cream font-semibold text-sm mb-0.5 intake-bold">CarniSema®</p>
+                <p class="font-inter text-cream/40 text-sm italic mb-3 intake-body">GLP-1 receptor agonist + L-Carnitine</p>
+                <p class="font-inter text-cream/60 text-sm leading-[1.6] intake-body">Clinically proven GLP-1 enhanced with L-Carnitine for metabolic support and energy.</p>
+                <p class="font-fraunces text-cream text-3xl mt-4 intake-heading">
+                  <span id="price-sema">$129</span><span class="font-inter text-cream/40 text-base font-normal">/mo</span>
+                </p>
+              </div>
+
+              <!-- Tirzepatide card -->
+              <div class="plan-med-card" data-med="tirz" id="card-tirz">
+                <div class="plan-card-badge alt">Alternative option</div>
+                <h3 class="font-fraunces text-cream text-xl leading-[1.2] mb-1 intake-heading">Compounded Tirzepatide + L-Carnitine</h3>
+                <p class="font-inter text-cream font-semibold text-sm mb-0.5 intake-bold">CarniTide®</p>
+                <p class="font-inter text-cream/40 text-sm italic mb-3 intake-body">Dual-action GLP-1/GIP receptor agonist + L-Carnitine</p>
+                <p class="font-inter text-cream/60 text-sm leading-[1.6] intake-body">Dual-action GLP-1/GIP formula enhanced with L-Carnitine for maximum metabolic support.</p>
+                <p class="font-fraunces text-cream text-3xl mt-4 intake-heading">
+                  <span id="price-tirz">$219</span><span class="font-inter text-cream/40 text-base font-normal">/mo</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Commitment toggle -->
+            <p class="font-inter text-cream font-semibold text-base mb-3 intake-bold">Commitment</p>
+            <div class="grid grid-cols-3 gap-3 mb-8" id="commitment-toggle">
+              <button class="commit-btn" data-commit="monthly">
+                <span class="commit-label">Monthly</span>
+              </button>
+              <button class="commit-btn" data-commit="3month">
+                <span class="commit-label">3-Month</span>
+                <span class="commit-save">Save 17%</span>
+              </button>
+              <button class="commit-btn commit-btn--popular selected" data-commit="6month">
+                <div class="commit-popular">Most Popular</div>
+                <span class="commit-label">6-Month</span>
+                <span class="commit-save">Save 28%</span>
+              </button>
+            </div>
+
+            <!-- What's included -->
+            <div class="plan-included-box mb-4">
+              <p class="font-inter text-cream font-bold text-base mb-4 intake-bold">What's included</p>
+              <ul class="flex flex-col gap-3">
+                <li class="flex items-start gap-3">
+                  <svg class="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8l4 4 7-7" stroke="#2A9D8F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span class="font-inter text-cream text-sm intake-body">Compounded medication</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8l4 4 7-7" stroke="#2A9D8F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span class="font-inter text-cream text-sm intake-body">Free shipping to your door</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8l4 4 7-7" stroke="#2A9D8F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span class="font-inter text-cream text-sm intake-body">Licensed provider oversight</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8l4 4 7-7" stroke="#2A9D8F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span class="font-inter text-cream text-sm intake-body">MD messaging &amp; support</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="shrink-0 mt-0.5" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 8l4 4 7-7" stroke="#2A9D8F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span class="font-inter text-cream text-sm intake-body">Aura Care Assistant — 24/7 support for questions and check-ins</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Order summary -->
+            <div class="plan-summary-box mb-4">
+              <div class="flex items-start justify-between gap-4 pb-4 border-b border-cream/10">
+                <span class="font-inter text-cream/70 text-sm leading-[1.5] intake-body" id="summary-product-name">Compounded Semaglutide + L-Carnitine (CarniSema®)</span>
+                <span class="font-inter text-cream/70 text-sm shrink-0 intake-body" id="summary-product-price">$129/mo</span>
+              </div>
+              <div class="flex items-center justify-between pt-4">
+                <span class="font-inter text-cream text-sm intake-body">Due today</span>
+                <span class="font-inter text-cream font-bold text-base intake-bold" id="summary-due">$129</span>
+              </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <p class="font-inter text-cream/30 text-xs leading-[1.6] mb-8 intake-subtle">
+              Your subscription is billed automatically each month. 6-month commitment plans cannot be cancelled before the initial term ends. No refunds for unused portions of your commitment period.
+            </p>
+
+            <!-- CTA -->
+            <button
+              id="step-7-continue"
+              class="w-full bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-base rounded-full px-10 py-4 transition-colors cursor-pointer"
+            >
+              Start my plan
+            </button>
+          </div>
+
+          <!-- Step 7: Collapsed -->
+          <div id="step-7-collapsed" class="hidden">
+            <div class="flex items-center justify-between py-2">
+              <div>
+                <p class="font-montserrat text-teal text-[10px] font-semibold tracking-[0.15em] uppercase mb-1 intake-label">Building Your Plan</p>
+                <p class="font-inter text-cream/50 text-sm intake-body">Your plan</p>
+              </div>
+              <button class="edit-step-btn flex items-center gap-2 border border-cream/15 rounded-full px-4 py-2 text-cream text-sm font-inter font-medium hover:border-cream/30 transition-colors cursor-pointer intake-back-btn intake-heading" data-edit-step="7">
+                <span id="step-7-answer">CarniSema®</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M10.08 1.92a1.5 1.5 0 012.12 0l.38.38a1.5 1.5 0 010 2.12L5.5 11.5 2 12.5l1-3.5 7.08-7.08z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <div class="border-t border-cream/10 mt-4 intake-border"></div>
+          </div>
+
+          <!-- ========== STEP 8: Checkout ========== -->
+          <div id="step-8-active" class="hidden mt-8">
+            <p class="font-montserrat text-teal text-xs font-semibold tracking-[0.15em] uppercase mb-2 intake-label">Almost There</p>
+            <h2 class="font-fraunces text-cream text-[clamp(28px,4vw,40px)] leading-[1.15] tracking-[-0.02em] mb-4 intake-heading">
+              Complete your order
+            </h2>
+
+            <!-- Mini order summary -->
+            <div class="co-summary-box mb-6">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <div>
+                  <p class="font-fraunces text-cream text-base leading-[1.3] intake-heading" id="co-summary-name">CarniSema®</p>
+                  <p class="font-inter text-cream/40 text-xs mt-0.5" id="co-summary-commit">6-Month Plan</p>
+                </div>
+                <p class="font-inter text-cream font-semibold text-base shrink-0 intake-bold" id="co-summary-price">$129/mo</p>
+              </div>
+              <div class="h-px bg-cream/10 my-3 intake-border-bg"></div>
+              <div class="flex items-center justify-between">
+                <span class="font-inter text-cream/50 text-sm intake-body">Due today</span>
+                <span class="font-inter text-cream font-bold text-base intake-bold" id="co-summary-due">$129</span>
+              </div>
+            </div>
+
+            <!-- Express checkout buttons -->
+            <div class="flex flex-col gap-3 mb-6">
+              <button class="co-express-btn co-express-btn--apple" id="co-btn-apple">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M13.9 4.6c.8-1 1.3-2.3 1.2-3.6-1.2.1-2.6.8-3.4 1.8-.8.9-1.4 2.2-1.2 3.5 1.3.1 2.6-.6 3.4-1.7zM16.5 10.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.5-.1-2.9.9-3.6.9-.8 0-1.9-.8-3.2-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.8 3-.8s1.8.8 3 .7c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.2-.8-2.2-3.9z"/>
+                </svg>
+                <span>Apple Pay</span>
+              </button>
+              <button class="co-express-btn co-express-btn--google" id="co-btn-google">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M18.6 10.2c0-.6-.1-1.2-.2-1.8H10v3.4h4.8c-.2 1.1-.9 2-1.9 2.6v2.2h3c1.8-1.6 2.7-4 2.7-6.4z" fill="#4285F4"/>
+                  <path d="M10 19c2.4 0 4.5-.8 6-2.2l-3-2.2c-.8.5-1.8.9-3 .9-2.3 0-4.3-1.6-5-3.7H2v2.3C3.5 17.2 6.6 19 10 19z" fill="#34A853"/>
+                  <path d="M5 11.8c-.2-.5-.3-1.1-.3-1.8s.1-1.3.3-1.8V5.9H2C1.4 7.1 1 8.5 1 10s.4 2.9 1 4.1l3-2.3z" fill="#FBBC04"/>
+                  <path d="M10 4.5c1.3 0 2.5.5 3.4 1.3l2.5-2.5C14.5 1.8 12.4 1 10 1 6.6 1 3.5 2.8 2 5.9l3 2.3c.7-2.1 2.7-3.7 5-3.7z" fill="#EA4335"/>
+                </svg>
+                <span>Google Pay</span>
+              </button>
+              <button class="co-express-btn co-express-btn--shop" id="co-btn-shop">
+                <svg width="20" height="14" viewBox="0 0 20 14" fill="currentColor">
+                  <path d="M1.96 0C.88 0 0 .88 0 1.96v10.08C0 13.12.88 14 1.96 14h16.08c1.08 0 1.96-.88 1.96-1.96V1.96C20 .88 19.12 0 18.04 0H1.96zm2.6 3.5h1.1l.55 3.5.6-3.5h1.1l-.9 5H5.7L5.15 5 4.6 8.5H3.8l-.9-5h1.1l.56 3.5zm5.3 0c.88 0 1.5.4 1.5 1.5 0 .7-.35 1.15-1 1.35l1.1 2.15h-1.2l-.95-2H9.1V8.5H8.1v-5h1.76zm-.76.9v1.4h.65c.35 0 .6-.2.6-.7 0-.5-.25-.7-.6-.7H9.1zm4.15-.9h1.65c1.1 0 1.65.5 1.65 1.5 0 1-.55 1.5-1.65 1.5h-.65V8.5h-1V3.5zm1 .9v1.2h.55c.4 0 .65-.15.65-.6s-.25-.6-.65-.6h-.55z"/>
+                </svg>
+                <span>Shop Pay</span>
+              </button>
+            </div>
+
+            <!-- Divider -->
+            <div class="flex items-center gap-4 mb-6">
+              <div class="flex-1 h-px bg-cream/10 intake-border-bg"></div>
+              <span class="font-inter text-cream/30 text-xs uppercase tracking-wider intake-muted">Or pay with card</span>
+              <div class="flex-1 h-px bg-cream/10 intake-border-bg"></div>
+            </div>
+
+            <!-- Card form -->
+            <div class="mb-4">
+              <label class="co-label">Full name</label>
+              <input type="text" placeholder="Jane Smith" class="co-input" id="co-name" autocomplete="name"/>
+            </div>
+
+            <div class="mb-4">
+              <label class="co-label">Email</label>
+              <input type="email" placeholder="you@example.com" class="co-input" id="co-email" autocomplete="email"/>
+            </div>
+
+            <div class="mb-4">
+              <label class="co-label">Card number</label>
+              <div class="co-input co-input--icon">
+                <input type="text" placeholder="1234 5678 9012 3456" class="co-input-bare" id="co-card" maxlength="19" autocomplete="cc-number"/>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <svg width="30" height="20" viewBox="0 0 30 20" fill="none"><rect width="30" height="20" rx="3" fill="#1A1F71"/><path d="M11.5 13.5H9.7l1.1-7h1.8l-1.1 7zM8.3 6.5L6.6 11.2l-.2-.9-.6-3.2s-.1-.6-.8-.6H2.1l-.1.2s.9.2 1.9.8l1.6 6h1.9l3-7h-2.1zM20.3 13.5h1.7l-1.5-7h-1.5c-.6 0-.8.5-.8.5L15 13.5h1.9l.4-1h2.3l.7 1zm-2.1-2.5l.9-2.6.5 2.6h-1.4zm-2.5-4.2l-.3 1.6s-.8-.4-1.6-.4c-.9 0-1.3.4-1.3.7 0 .8 2 1.1 2 2.8 0 1.4-1.3 2.2-3 2.2-1.3 0-2-.3-2-.3l.3-1.7s.9.4 1.8.4c.5 0 1.4-.2 1.4-.9 0-1.1-2-1.1-2-2.7 0-1.5 1.3-2.3 3-2.3.9 0 1.7.3 1.7.6z" fill="white"/></svg>
+                  <svg width="30" height="20" viewBox="0 0 30 20" fill="none"><rect width="30" height="20" rx="3" fill="#252525"/><circle cx="11.5" cy="10" r="5.5" fill="#EB001B"/><circle cx="18.5" cy="10" r="5.5" fill="#F79E1B"/><path d="M15 6.1a5.5 5.5 0 010 7.8A5.5 5.5 0 0115 6.1z" fill="#FF5F00"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-6">
+              <div>
+                <label class="co-label">Expiry</label>
+                <input type="text" placeholder="MM / YY" class="co-input" id="co-expiry" maxlength="7" autocomplete="cc-exp"/>
+              </div>
+              <div>
+                <label class="co-label">CVV</label>
+                <input type="text" placeholder="•••" class="co-input" id="co-cvv" maxlength="4" autocomplete="cc-csc"/>
+              </div>
+            </div>
+
+            <button id="co-submit" class="w-full bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-base rounded-full py-4 transition-colors cursor-pointer mb-5">
+              Start my plan
+            </button>
+
+            <p class="font-inter text-cream/25 text-xs text-center leading-[1.6] intake-subtle">
+              By continuing, you authorize this charge and agree to our <a href="/terms" class="underline hover:text-cream/40 transition-colors">Terms of Service</a> and <a href="/privacy" class="underline hover:text-cream/40 transition-colors">Privacy Policy</a>. Your subscription renews automatically. Cancel anytime in your account settings.
+            </p>
+          </div>
+
+          <!-- Step 8: Collapsed -->
+          <div id="step-8-collapsed" class="hidden">
+            <div class="flex items-center justify-between py-2">
+              <div>
+                <p class="font-montserrat text-teal text-[10px] font-semibold tracking-[0.15em] uppercase mb-1 intake-label">Almost There</p>
+                <p class="font-inter text-cream/50 text-sm intake-body">Payment info</p>
+              </div>
+              <button class="edit-step-btn flex items-center gap-2 border border-cream/15 rounded-full px-4 py-2 text-cream text-sm font-inter font-medium hover:border-cream/30 transition-colors cursor-pointer intake-back-btn intake-heading" data-edit-step="8">
+                <span id="step-8-answer">Card</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M10.08 1.92a1.5 1.5 0 012.12 0l.38.38a1.5 1.5 0 010 2.12L5.5 11.5 2 12.5l1-3.5 7.08-7.08z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <div class="border-t border-cream/10 mt-4 intake-border"></div>
+          </div>
+
+          <!-- ========== STEP 9: Medical Safety Questions ========== -->
+          <div id="step-9-active" class="hidden mt-8 pb-4">
+            <p class="font-montserrat text-teal text-xs font-semibold tracking-[0.15em] uppercase mb-2 intake-label">Keeping You Safe</p>
+            <h2 class="font-fraunces text-cream text-[clamp(28px,4vw,40px)] leading-[1.15] tracking-[-0.02em] mb-4 intake-heading">
+              I need to ask you a few important health questions
+            </h2>
+            <p class="font-inter text-cream/50 text-base leading-[1.6] mb-8 intake-body">
+              I know some of these feel personal, but your honest answers help me keep you safe. That's my number one priority.
+            </p>
+
+            <div class="flex flex-col gap-3 mb-8" id="safety-questions">
+              <div class="safety-card" data-q="pregnant">
+                <span class="font-inter text-cream text-sm leading-[1.5] intake-body">Are you currently pregnant or planning to become pregnant?</span>
+                <div class="flex items-center gap-2 shrink-0">
+                  <button class="safety-btn selected" data-answer="no">No</button>
+                  <button class="safety-btn" data-answer="yes">Yes</button>
+                </div>
+              </div>
+              <div class="safety-card" data-q="breastfeeding">
+                <span class="font-inter text-cream text-sm leading-[1.5] intake-body">Are you currently breastfeeding?</span>
+                <div class="flex items-center gap-2 shrink-0">
+                  <button class="safety-btn selected" data-answer="no">No</button>
+                  <button class="safety-btn" data-answer="yes">Yes</button>
+                </div>
+              </div>
+              <div class="safety-card" data-q="thyroid">
+                <span class="font-inter text-cream text-sm leading-[1.5] intake-body">Do you have a personal or family history of medullary thyroid carcinoma (MTC) or Multiple Endocrine Neoplasia syndrome type 2 (MEN 2)?</span>
+                <div class="flex items-center gap-2 shrink-0">
+                  <button class="safety-btn selected" data-answer="no">No</button>
+                  <button class="safety-btn" data-answer="yes">Yes</button>
+                </div>
+              </div>
+              <div class="safety-card" data-q="pancreatitis">
+                <span class="font-inter text-cream text-sm leading-[1.5] intake-body">Have you ever had pancreatitis?</span>
+                <div class="flex items-center gap-2 shrink-0">
+                  <button class="safety-btn selected" data-answer="no">No</button>
+                  <button class="safety-btn" data-answer="yes">Yes</button>
+                </div>
+              </div>
+              <div class="safety-card" data-q="gastroparesis">
+                <span class="font-inter text-cream text-sm leading-[1.5] intake-body">Have you been diagnosed with gastroparesis (delayed stomach emptying)?</span>
+                <div class="flex items-center gap-2 shrink-0">
+                  <button class="safety-btn selected" data-answer="no">No</button>
+                  <button class="safety-btn" data-answer="yes">Yes</button>
+                </div>
+              </div>
+              <div class="safety-card" data-q="bowel">
+                <span class="font-inter text-cream text-sm leading-[1.5] intake-body">Do you have a history of bowel obstruction?</span>
+                <div class="flex items-center gap-2 shrink-0">
+                  <button class="safety-btn selected" data-answer="no">No</button>
+                  <button class="safety-btn" data-answer="yes">Yes</button>
+                </div>
+              </div>
+              <div class="safety-card" data-q="eating">
+                <span class="font-inter text-cream text-sm leading-[1.5] intake-body">Have you been diagnosed with an eating disorder?</span>
+                <div class="flex items-center gap-2 shrink-0">
+                  <button class="safety-btn selected" data-answer="no">No</button>
+                  <button class="safety-btn" data-answer="yes">Yes</button>
+                </div>
+              </div>
+            </div>
+
+            <button id="step-9-continue" class="w-full bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-base rounded-full px-10 py-4 transition-colors cursor-pointer">
+              Continue
+            </button>
+          </div>
+
+          <!-- Step 9: Collapsed -->
+          <div id="step-9-collapsed" class="hidden">
+            <div class="flex items-center justify-between py-2">
+              <div>
+                <p class="font-montserrat text-teal text-[10px] font-semibold tracking-[0.15em] uppercase mb-1 intake-label">Keeping You Safe</p>
+                <p class="font-inter text-cream/50 text-sm intake-body">Health screening</p>
+              </div>
+              <button class="edit-step-btn flex items-center gap-2 border border-cream/15 rounded-full px-4 py-2 text-cream text-sm font-inter font-medium hover:border-cream/30 transition-colors cursor-pointer intake-back-btn intake-heading" data-edit-step="9">
+                <span id="step-9-answer">Done</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M10.08 1.92a1.5 1.5 0 012.12 0l.38.38a1.5 1.5 0 010 2.12L5.5 11.5 2 12.5l1-3.5 7.08-7.08z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <div class="border-t border-cream/10 mt-4 intake-border"></div>
+          </div>
+
+          <!-- ========== STEP 10: Comorbidities ========== -->
+          <div id="step-10-active" class="hidden mt-8 pb-4">
+            <p class="font-montserrat text-teal text-xs font-semibold tracking-[0.15em] uppercase mb-2 intake-label">Keeping You Safe</p>
+            <h2 class="font-fraunces text-cream text-[clamp(28px,4vw,40px)] leading-[1.15] tracking-[-0.02em] mb-4 intake-heading">
+              Do any of these sound familiar?
+            </h2>
+            <p class="font-inter text-cream/50 text-base leading-[1.6] mb-8 intake-body">
+              Check anything that applies — it helps me make sure your treatment is safe and tailored to you.
+            </p>
+
+            <div class="flex flex-col gap-3 mb-8" id="comorbidity-list">
+              <button class="comorbidity-card" data-value="Type 2 Diabetes">
+                <div class="comorbidity-checkbox">
+                  <svg class="comorbidity-check-icon" width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1.5 5l3 3 6-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="font-inter text-cream text-[15px] intake-body">Type 2 Diabetes</span>
+              </button>
+              <button class="comorbidity-card" data-value="Hypertension">
+                <div class="comorbidity-checkbox">
+                  <svg class="comorbidity-check-icon" width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1.5 5l3 3 6-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="font-inter text-cream text-[15px] intake-body">Hypertension (High Blood Pressure)</span>
+              </button>
+              <button class="comorbidity-card" data-value="Heart Disease">
+                <div class="comorbidity-checkbox">
+                  <svg class="comorbidity-check-icon" width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1.5 5l3 3 6-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="font-inter text-cream text-[15px] intake-body">Heart Disease</span>
+              </button>
+              <button class="comorbidity-card" data-value="Sleep Apnea">
+                <div class="comorbidity-checkbox">
+                  <svg class="comorbidity-check-icon" width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1.5 5l3 3 6-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="font-inter text-cream text-[15px] intake-body">Sleep Apnea</span>
+              </button>
+              <button class="comorbidity-card" data-value="PCOS">
+                <div class="comorbidity-checkbox">
+                  <svg class="comorbidity-check-icon" width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1.5 5l3 3 6-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="font-inter text-cream text-[15px] intake-body">PCOS (Polycystic Ovary Syndrome)</span>
+              </button>
+              <button class="comorbidity-card" data-value="Fatty Liver Disease">
+                <div class="comorbidity-checkbox">
+                  <svg class="comorbidity-check-icon" width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1.5 5l3 3 6-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="font-inter text-cream text-[15px] intake-body">Fatty Liver Disease (NAFLD)</span>
+              </button>
+              <button class="comorbidity-card" data-value="Depression / Anxiety">
+                <div class="comorbidity-checkbox">
+                  <svg class="comorbidity-check-icon" width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1.5 5l3 3 6-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="font-inter text-cream text-[15px] intake-body">Depression / Anxiety</span>
+              </button>
+              <button class="comorbidity-card" data-value="Joint Pain / Arthritis">
+                <div class="comorbidity-checkbox">
+                  <svg class="comorbidity-check-icon" width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1.5 5l3 3 6-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="font-inter text-cream text-[15px] intake-body">Joint Pain / Arthritis</span>
+              </button>
+              <button class="comorbidity-card" data-value="Kidney Disease">
+                <div class="comorbidity-checkbox">
+                  <svg class="comorbidity-check-icon" width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1.5 5l3 3 6-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="font-inter text-cream text-[15px] intake-body">Kidney Disease</span>
+              </button>
+              <button class="comorbidity-card comorbidity-card--none" data-value="None of the above">
+                <div class="comorbidity-checkbox">
+                  <svg class="comorbidity-check-icon" width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1.5 5l3 3 6-7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="font-inter text-cream text-[15px] intake-body">None of the above</span>
+              </button>
+            </div>
+
+            <button id="step-10-continue" class="w-full bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-base rounded-full px-10 py-4 transition-colors cursor-pointer hidden">
+              Continue
+            </button>
+          </div>
+
+          <!-- ========== STEP 10: Collapsed ========== -->
+          <div id="step-10-collapsed" class="hidden">
+            <div class="flex items-center justify-between py-2">
+              <p class="font-montserrat text-cream/40 text-xs font-medium tracking-[0.12em] uppercase intake-label-sm">Conditions</p>
+              <button class="edit-step-btn flex items-center gap-2 font-inter text-cream/50 text-sm hover:text-cream transition-colors cursor-pointer" data-edit-step="10">
+                <span id="step-10-answer">—</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9.5 2.5l2 2-7 7H2.5v-2l7-7z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="border-t border-cream/5 mt-1 intake-border"></div>
+          </div>
+
+          <!-- ========== STEP 11: Meet the Founder ========== -->
+          <div id="step-11-active" class="hidden mt-8 pb-4">
+            <p class="font-montserrat text-teal text-xs font-semibold tracking-[0.15em] uppercase mb-2 intake-label">Keeping You Safe</p>
+            <h2 class="font-fraunces text-cream text-[clamp(28px,4vw,40px)] leading-[1.15] tracking-[-0.02em] mb-8 intake-heading">
+              You're in good hands — meet our founder
+            </h2>
+
+            <!-- Founder card -->
+            <div class="founder-card rounded-2xl border border-cream/10 p-8 mb-4">
+              <div class="flex flex-col items-center text-center mb-6">
+                <img
+                  src="/images/jobby-headshot.png"
+                  alt="Dr. Jobby John"
+                  class="w-28 h-28 rounded-full object-cover object-center mb-4 border-2 border-cream/20"
+                />
+                <p class="font-fraunces text-cream text-xl font-semibold mb-1 intake-heading">Dr. Jobby John</p>
+                <p class="font-montserrat text-cream/50 text-sm font-semibold tracking-[0.12em] uppercase mb-1 intake-label-sm">PharmD, FACA</p>
+                <p class="font-inter text-cream/40 text-sm intake-body">Founder &amp; CEO, Nimbus Healthcare</p>
+              </div>
+              <blockquote class="border-l-2 border-teal pl-5">
+                <p class="font-fraunces text-cream/80 text-lg italic leading-[1.65] intake-body">
+                  "Nimbus was founded by a pharmacist who understands how medications work together. This tool helps us get to know you better, so we can support your care safely and thoughtfully."
+                </p>
+              </blockquote>
+            </div>
+
+            <!-- Trust badges card -->
+            <div class="trust-badges-card rounded-2xl border border-cream/10 px-6 py-7 flex items-center justify-center gap-8 mb-8">
+              <div class="flex flex-col items-center gap-2">
+                <img src="/images/LHP_NABP-logo.webp" alt="NABP Accredited Compounding Pharmacy" class="h-16 object-contain nabp-logo" />
+                <p class="font-montserrat text-cream/40 text-[10px] font-semibold tracking-[0.12em] uppercase intake-label-sm">NABP Accredited</p>
+              </div>
+              <div class="w-px self-stretch bg-cream/10 intake-divider-v"></div>
+              <div class="bg-white rounded-xl px-4 py-3 flex items-center justify-center">
+                <img src="/images/trustpilot-excellent.webp" alt="Trustpilot Excellent" class="w-[130px] h-auto" />
+              </div>
+            </div>
+
+            <button id="step-11-continue" class="w-full bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-base rounded-full px-10 py-4 transition-colors cursor-pointer">
+              Continue
+            </button>
+          </div>
+
+          <!-- ========== STEP 11: Collapsed ========== -->
+          <div id="step-11-collapsed" class="hidden">
+            <div class="flex items-center justify-between py-2">
+              <p class="font-montserrat text-cream/40 text-xs font-medium tracking-[0.12em] uppercase intake-label-sm">Meet the Founder</p>
+              <button class="edit-step-btn flex items-center gap-2 font-inter text-cream/50 text-sm hover:text-cream transition-colors cursor-pointer" data-edit-step="11">
+                <span id="step-11-answer">Viewed</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9.5 2.5l2 2-7 7H2.5v-2l7-7z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="border-t border-cream/5 mt-1 intake-border"></div>
+          </div>
+
+          <!-- ========== STEP 12: Current Medications ========== -->
+          <div id="step-12-active" class="hidden mt-8 pb-4">
+            <p class="font-montserrat text-teal text-xs font-semibold tracking-[0.15em] uppercase mb-2 intake-label">Keeping You Safe</p>
+            <h2 class="font-fraunces text-cream text-[clamp(28px,4vw,40px)] leading-[1.15] tracking-[-0.02em] mb-3 intake-heading">
+              Are you taking any other medications right now?
+            </h2>
+            <p class="font-inter text-cream/50 text-base leading-[1.6] mb-6 intake-body">
+              I want to make sure nothing clashes. You can search or browse by category.
+            </p>
+
+            <!-- Search -->
+            <div class="relative mb-4">
+              <div class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-cream/30">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.4"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              </div>
+              <input
+                id="med-search"
+                type="text"
+                placeholder="Search medications..."
+                class="med-search-input w-full rounded-2xl border border-cream/15 bg-transparent pl-10 pr-4 py-4 font-inter text-cream text-base placeholder:text-cream/30 outline-none focus:border-cream/30 transition-colors"
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- Accordion categories -->
+            <div id="med-accordion" class="flex flex-col gap-3 mb-8">
+
+              <!-- Blood Pressure -->
+              <div class="med-category" data-category="blood-pressure">
+                <button class="med-cat-header w-full flex items-center justify-between rounded-2xl border border-cream/15 px-5 py-4 font-inter text-cream text-base font-medium text-left transition-colors cursor-pointer">
+                  <span>Blood Pressure Medications</span>
+                  <svg class="med-cat-chevron shrink-0 transition-transform duration-300" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="med-cat-body">
+                  <div class="flex flex-wrap gap-2 px-1 pb-2 pt-2">
+                    <button class="med-pill" data-med="Lisinopril">Lisinopril</button>
+                    <button class="med-pill" data-med="Metoprolol">Metoprolol</button>
+                    <button class="med-pill" data-med="Amlodipine">Amlodipine</button>
+                    <button class="med-pill" data-med="Losartan">Losartan</button>
+                    <button class="med-pill" data-med="Atenolol">Atenolol</button>
+                    <button class="med-pill" data-med="Hydrochlorothiazide">Hydrochlorothiazide</button>
+                    <button class="med-pill" data-med="Carvedilol">Carvedilol</button>
+                    <button class="med-pill" data-med="Valsartan">Valsartan</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Thyroid -->
+              <div class="med-category" data-category="thyroid">
+                <button class="med-cat-header w-full flex items-center justify-between rounded-2xl border border-cream/15 px-5 py-4 font-inter text-cream text-base font-medium text-left transition-colors cursor-pointer">
+                  <span>Thyroid Medications</span>
+                  <svg class="med-cat-chevron shrink-0 transition-transform duration-300" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="med-cat-body">
+                  <div class="flex flex-wrap gap-2 px-1 pb-2 pt-2">
+                    <button class="med-pill" data-med="Levothyroxine (Synthroid)">Levothyroxine (Synthroid)</button>
+                    <button class="med-pill" data-med="Liothyronine (Cytomel)">Liothyronine (Cytomel)</button>
+                    <button class="med-pill" data-med="Armour Thyroid">Armour Thyroid</button>
+                    <button class="med-pill" data-med="NP Thyroid">NP Thyroid</button>
+                    <button class="med-pill" data-med="Methimazole">Methimazole</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Diabetes -->
+              <div class="med-category" data-category="diabetes">
+                <button class="med-cat-header w-full flex items-center justify-between rounded-2xl border border-cream/15 px-5 py-4 font-inter text-cream text-base font-medium text-left transition-colors cursor-pointer">
+                  <span>Diabetes Medications</span>
+                  <svg class="med-cat-chevron shrink-0 transition-transform duration-300" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="med-cat-body">
+                  <div class="flex flex-wrap gap-2 px-1 pb-2 pt-2">
+                    <button class="med-pill" data-med="Metformin">Metformin</button>
+                    <button class="med-pill" data-med="Glipizide">Glipizide</button>
+                    <button class="med-pill" data-med="Januvia (Sitagliptin)">Januvia (Sitagliptin)</button>
+                    <button class="med-pill" data-med="Jardiance (Empagliflozin)">Jardiance (Empagliflozin)</button>
+                    <button class="med-pill" data-med="Farxiga (Dapagliflozin)">Farxiga (Dapagliflozin)</button>
+                    <button class="med-pill" data-med="Trulicity (Dulaglutide)">Trulicity (Dulaglutide)</button>
+                    <button class="med-pill" data-med="Insulin">Insulin</button>
+                    <button class="med-pill" data-med="Glimepiride">Glimepiride</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mental Health -->
+              <div class="med-category" data-category="mental-health">
+                <button class="med-cat-header w-full flex items-center justify-between rounded-2xl border border-cream/15 px-5 py-4 font-inter text-cream text-base font-medium text-left transition-colors cursor-pointer">
+                  <span>Mental Health</span>
+                  <svg class="med-cat-chevron shrink-0 transition-transform duration-300" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="med-cat-body">
+                  <div class="flex flex-wrap gap-2 px-1 pb-2 pt-2">
+                    <button class="med-pill" data-med="Sertraline (Zoloft)">Sertraline (Zoloft)</button>
+                    <button class="med-pill" data-med="Escitalopram (Lexapro)">Escitalopram (Lexapro)</button>
+                    <button class="med-pill" data-med="Fluoxetine (Prozac)">Fluoxetine (Prozac)</button>
+                    <button class="med-pill" data-med="Bupropion (Wellbutrin)">Bupropion (Wellbutrin)</button>
+                    <button class="med-pill" data-med="Duloxetine (Cymbalta)">Duloxetine (Cymbalta)</button>
+                    <button class="med-pill" data-med="Alprazolam (Xanax)">Alprazolam (Xanax)</button>
+                    <button class="med-pill" data-med="Lorazepam (Ativan)">Lorazepam (Ativan)</button>
+                    <button class="med-pill" data-med="Quetiapine (Seroquel)">Quetiapine (Seroquel)</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cholesterol -->
+              <div class="med-category" data-category="cholesterol">
+                <button class="med-cat-header w-full flex items-center justify-between rounded-2xl border border-cream/15 px-5 py-4 font-inter text-cream text-base font-medium text-left transition-colors cursor-pointer">
+                  <span>Cholesterol Medications</span>
+                  <svg class="med-cat-chevron shrink-0 transition-transform duration-300" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="med-cat-body">
+                  <div class="flex flex-wrap gap-2 px-1 pb-2 pt-2">
+                    <button class="med-pill" data-med="Atorvastatin (Lipitor)">Atorvastatin (Lipitor)</button>
+                    <button class="med-pill" data-med="Rosuvastatin (Crestor)">Rosuvastatin (Crestor)</button>
+                    <button class="med-pill" data-med="Simvastatin">Simvastatin</button>
+                    <button class="med-pill" data-med="Pravastatin">Pravastatin</button>
+                    <button class="med-pill" data-med="Fenofibrate">Fenofibrate</button>
+                    <button class="med-pill" data-med="Ezetimibe">Ezetimibe</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Vitamins & Supplements -->
+              <div class="med-category" data-category="vitamins">
+                <button class="med-cat-header w-full flex items-center justify-between rounded-2xl border border-cream/15 px-5 py-4 font-inter text-cream text-base font-medium text-left transition-colors cursor-pointer">
+                  <span>Vitamins &amp; Supplements</span>
+                  <svg class="med-cat-chevron shrink-0 transition-transform duration-300" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="med-cat-body">
+                  <div class="flex flex-wrap gap-2 px-1 pb-2 pt-2">
+                    <button class="med-pill" data-med="Vitamin D3">Vitamin D3</button>
+                    <button class="med-pill" data-med="Vitamin B12">Vitamin B12</button>
+                    <button class="med-pill" data-med="Fish Oil / Omega-3">Fish Oil / Omega-3</button>
+                    <button class="med-pill" data-med="Magnesium">Magnesium</button>
+                    <button class="med-pill" data-med="Iron">Iron</button>
+                    <button class="med-pill" data-med="Calcium">Calcium</button>
+                    <button class="med-pill" data-med="Zinc">Zinc</button>
+                    <button class="med-pill" data-med="Multivitamin">Multivitamin</button>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /med-accordion -->
+
+            <!-- None / Continue -->
+            <button id="step-12-continue" class="med-none-btn w-full font-montserrat font-medium text-base py-4 transition-colors cursor-pointer">
+              None — Continue
+            </button>
+          </div>
+
+          <!-- ========== STEP 12: Collapsed ========== -->
+          <div id="step-12-collapsed" class="hidden">
+            <div class="flex items-center justify-between py-2">
+              <p class="font-montserrat text-cream/40 text-xs font-medium tracking-[0.12em] uppercase intake-label-sm">Medications</p>
+              <button class="edit-step-btn flex items-center gap-2 font-inter text-cream/50 text-sm hover:text-cream transition-colors cursor-pointer" data-edit-step="12">
+                <span id="step-12-answer">None</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9.5 2.5l2 2-7 7H2.5v-2l7-7z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="border-t border-cream/5 mt-1 intake-border"></div>
+          </div>
+
+          <!-- ========== STEP 13: Allergies ========== -->
+          <div id="step-13-active" class="hidden mt-8 pb-4">
+            <p class="font-montserrat text-teal text-xs font-semibold tracking-[0.15em] uppercase mb-2 intake-label">Keeping You Safe</p>
+            <h2 class="font-fraunces text-cream text-[clamp(28px,4vw,40px)] leading-[1.15] tracking-[-0.02em] mb-3 intake-heading">
+              Any allergies to medications I should know about?
+            </h2>
+            <p class="font-inter text-cream/50 text-base leading-[1.6] mb-6 intake-body">
+              Even if it's minor — better safe than sorry!
+            </p>
+
+            <!-- Textarea -->
+            <textarea
+              id="allergy-input"
+              rows="4"
+              placeholder="List any medication allergies, or type 'None'"
+              class="allergy-textarea w-full rounded-2xl border border-cream/15 bg-transparent px-5 py-4 font-inter text-cream text-base placeholder:text-cream/30 outline-none focus:border-cream/30 transition-colors resize-none leading-relaxed"
+            ></textarea>
+
+            <!-- Quick select -->
+            <button id="allergy-none-btn" class="mt-3 font-inter text-cream/40 text-sm hover:text-cream/70 transition-colors cursor-pointer">
+              No known allergies
+            </button>
+
+            <!-- Continue — hidden until input -->
+            <button id="step-13-continue" class="hidden w-full bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-base rounded-full px-10 py-4 transition-colors cursor-pointer mt-6">
+              Continue
+            </button>
+          </div>
+
+          <!-- ========== STEP 13: Collapsed ========== -->
+          <div id="step-13-collapsed" class="hidden">
+            <div class="flex items-center justify-between py-2">
+              <p class="font-montserrat text-cream/40 text-xs font-medium tracking-[0.12em] uppercase intake-label-sm">Allergies</p>
+              <button class="edit-step-btn flex items-center gap-2 font-inter text-cream/50 text-sm hover:text-cream transition-colors cursor-pointer" data-edit-step="13">
+                <span id="step-13-answer">None</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9.5 2.5l2 2-7 7H2.5v-2l7-7z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="border-t border-cream/5 mt-1 intake-border"></div>
+          </div>
+
+          <!-- ========== STEP 14: ID Verification ========== -->
+          <div id="step-14-active" class="hidden mt-8 pb-4">
+            <p class="font-montserrat text-teal text-xs font-semibold tracking-[0.15em] uppercase mb-2 intake-label">All Done</p>
+            <h2 class="font-fraunces text-cream text-[clamp(28px,4vw,40px)] leading-[1.15] tracking-[-0.02em] mb-3 intake-heading">
+              Can I see a quick photo of your ID?
+            </h2>
+            <p class="font-inter text-cream/50 text-base leading-[1.6] mb-6 intake-body">
+              It's just a standard verification step — keeps everything safe and legit.
+            </p>
+            <p class="font-inter text-cream/70 text-sm leading-[1.6] mb-6 intake-body">
+              Please upload a photo of your government-issued ID. It needs to clearly show your photo, name, and date of birth.
+            </p>
+
+            <!-- Action cards -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+
+              <!-- Take Photo -->
+              <button id="id-take-photo" class="id-upload-card flex flex-col items-center justify-center gap-4 rounded-3xl border border-cream/15 py-10 transition-colors cursor-pointer">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" class="text-cream/70">
+                  <path d="M13.5 6L11.25 9H6a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h24a3 3 0 0 0 3-3V12a3 3 0 0 0-3-3h-5.25L22.5 6h-9z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="18" cy="19.5" r="5.25" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+                <span class="font-inter text-cream text-base font-medium">Take Photo</span>
+              </button>
+
+              <!-- Upload File -->
+              <button id="id-upload-file" class="id-upload-card flex flex-col items-center justify-center gap-4 rounded-3xl border border-cream/15 py-10 transition-colors cursor-pointer">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" class="text-cream/70">
+                  <path d="M18 24V12M18 12l-6 6M18 12l6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6 27h24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                <span class="font-inter text-cream text-base font-medium">Upload File</span>
+              </button>
+
+            </div>
+
+            <!-- Hidden file inputs -->
+            <input id="id-camera-input" type="file" accept="image/*" capture="environment" class="hidden" />
+            <input id="id-file-input" type="file" accept="image/*,application/pdf" class="hidden" />
+
+            <!-- Preview (shown after file selected) -->
+            <div id="id-preview" class="hidden mb-4">
+              <div class="relative rounded-2xl overflow-hidden border border-teal/30 bg-teal/5">
+                <img id="id-preview-img" src="" alt="ID preview" class="w-full max-h-52 object-cover" />
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-dark/80 to-transparent px-4 py-3 flex items-center justify-between">
+                  <p id="id-preview-name" class="font-inter text-cream/80 text-xs truncate max-w-[70%]"></p>
+                  <button id="id-clear" class="font-inter text-cream/50 text-xs hover:text-cream transition-colors cursor-pointer">Remove</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Continue — hidden until file selected -->
+            <button id="step-14-continue" class="hidden w-full bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-base rounded-full px-10 py-4 transition-colors cursor-pointer">
+              Continue
+            </button>
+          </div>
+
+          <!-- ========== STEP 14: Collapsed ========== -->
+          <div id="step-14-collapsed" class="hidden">
+            <div class="flex items-center justify-between py-2">
+              <p class="font-montserrat text-cream/40 text-xs font-medium tracking-[0.12em] uppercase intake-label-sm">Government ID</p>
+              <button class="edit-step-btn flex items-center gap-2 font-inter text-cream/50 text-sm hover:text-cream transition-colors cursor-pointer" data-edit-step="14">
+                <span id="step-14-answer">Uploaded</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9.5 2.5l2 2-7 7H2.5v-2l7-7z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="border-t border-cream/5 mt-1 intake-border"></div>
+          </div>
+
+          <!-- ========== STEP 15: Body Photo ========== -->
+          <div id="step-15-active" class="hidden mt-8 pb-4">
+            <p class="font-montserrat text-teal text-xs font-semibold tracking-[0.15em] uppercase mb-2 intake-label">All Done</p>
+            <h2 class="font-fraunces text-cream text-[clamp(28px,4vw,40px)] leading-[1.15] tracking-[-0.02em] mb-3 intake-heading">
+              One more thing — can you share a full body photo?
+            </h2>
+            <p class="font-inter text-cream/50 text-base leading-[1.6] mb-5 intake-body">
+              This is required by our medical team to properly evaluate your treatment plan. It stays confidential and is only shared with your provider.
+            </p>
+            <p class="font-inter text-cream/70 text-sm leading-[1.6] mb-5 intake-body">
+              Please share a full body photo standing upright. This helps our medical team properly evaluate your treatment plan.
+            </p>
+
+            <!-- Photo Tips card -->
+            <div class="photo-tips-card rounded-2xl border border-cream/15 px-5 py-5 mb-5">
+              <p class="font-montserrat text-cream text-xs font-bold tracking-[0.15em] uppercase mb-4">Photo Tips</p>
+              <ul class="flex flex-col gap-3">
+                <li class="flex items-center gap-3 font-inter text-cream/70 text-sm">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 text-cream/60"><path d="M2.5 8.5l4 4 7-8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Stand in a well-lit area
+                </li>
+                <li class="flex items-center gap-3 font-inter text-cream/70 text-sm">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 text-cream/60"><path d="M2.5 8.5l4 4 7-8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Show full body from head to toe
+                </li>
+                <li class="flex items-center gap-3 font-inter text-cream/70 text-sm">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 text-cream/60"><path d="M2.5 8.5l4 4 7-8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Wear form-fitting clothing
+                </li>
+              </ul>
+            </div>
+
+            <!-- Action cards -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+              <button id="body-take-photo" class="id-upload-card flex flex-col items-center justify-center gap-4 rounded-3xl border border-cream/15 py-10 transition-colors cursor-pointer">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" class="text-cream/70">
+                  <path d="M13.5 6L11.25 9H6a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h24a3 3 0 0 0 3-3V12a3 3 0 0 0-3-3h-5.25L22.5 6h-9z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="18" cy="19.5" r="5.25" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+                <span class="font-inter text-cream text-base font-medium">Take Photo</span>
+              </button>
+              <button id="body-upload-file" class="id-upload-card flex flex-col items-center justify-center gap-4 rounded-3xl border border-cream/15 py-10 transition-colors cursor-pointer">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" class="text-cream/70">
+                  <path d="M18 24V12M18 12l-6 6M18 12l6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6 27h24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+                <span class="font-inter text-cream text-base font-medium">Upload File</span>
+              </button>
+            </div>
+
+            <!-- Hidden file inputs -->
+            <input id="body-camera-input" type="file" accept="image/*" capture="environment" class="hidden" />
+            <input id="body-file-input" type="file" accept="image/*" class="hidden" />
+
+            <!-- Preview -->
+            <div id="body-preview" class="hidden mb-4">
+              <div class="relative rounded-2xl overflow-hidden border border-teal/30 bg-teal/5">
+                <img id="body-preview-img" src="" alt="Body photo preview" class="w-full max-h-64 object-cover" />
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-dark/80 to-transparent px-4 py-3 flex items-center justify-between">
+                  <p id="body-preview-name" class="font-inter text-cream/80 text-xs truncate max-w-[70%]"></p>
+                  <button id="body-clear" class="font-inter text-cream/50 text-xs hover:text-cream transition-colors cursor-pointer">Remove</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Continue — hidden until file selected -->
+            <button id="step-15-continue" class="hidden w-full bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-base rounded-full px-10 py-4 transition-colors cursor-pointer">
+              Continue
+            </button>
+          </div>
+
+          <!-- ========== STEP 15: Collapsed ========== -->
+          <div id="step-15-collapsed" class="hidden">
+            <div class="flex items-center justify-between py-2">
+              <p class="font-montserrat text-cream/40 text-xs font-medium tracking-[0.12em] uppercase intake-label-sm">Body Photo</p>
+              <button class="edit-step-btn flex items-center gap-2 font-inter text-cream/50 text-sm hover:text-cream transition-colors cursor-pointer" data-edit-step="15">
+                <span id="step-15-answer">Uploaded</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9.5 2.5l2 2-7 7H2.5v-2l7-7z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="border-t border-cream/5 mt-1 intake-border"></div>
+          </div>
+
+          <!-- ========== STEP 16: Shipping Address ========== -->
+          <div id="step-16-active" class="hidden mt-8 pb-4">
+            <p class="font-montserrat text-teal text-xs font-semibold tracking-[0.15em] uppercase mb-2 intake-label">All Done</p>
+            <h2 class="font-fraunces text-cream text-[clamp(28px,4vw,40px)] leading-[1.15] tracking-[-0.02em] mb-3 intake-heading">
+              Where should we ship your medication?
+            </h2>
+            <p class="font-inter text-cream/50 text-base leading-[1.6] mb-7 intake-body">
+              Make sure it's somewhere you can receive packages securely.
+            </p>
+
+            <!-- Form -->
+            <p class="font-inter text-cream font-semibold text-sm mb-3 intake-body">Shipping Address</p>
+            <div class="flex flex-col gap-3 mb-4">
+
+              <!-- Street -->
+              <input
+                id="ship-street"
+                type="text"
+                placeholder="Street address"
+                autocomplete="street-address"
+                class="ship-input w-full rounded-2xl border border-cream/15 bg-transparent px-5 py-4 font-inter text-cream text-base placeholder:text-cream/30 outline-none focus:border-cream/30 transition-colors"
+              />
+
+              <!-- Apt/Suite -->
+              <input
+                id="ship-apt"
+                type="text"
+                placeholder="Apt, suite, unit (optional)"
+                autocomplete="address-line2"
+                class="ship-input w-full rounded-2xl border border-cream/15 bg-transparent px-5 py-4 font-inter text-cream text-base placeholder:text-cream/30 outline-none focus:border-cream/30 transition-colors"
+              />
+
+              <!-- City + State row -->
+              <div class="grid grid-cols-2 gap-3">
+                <input
+                  id="ship-city"
+                  type="text"
+                  placeholder="City"
+                  autocomplete="address-level2"
+                  class="ship-input w-full rounded-2xl border border-cream/15 bg-transparent px-5 py-4 font-inter text-cream text-base placeholder:text-cream/30 outline-none focus:border-cream/30 transition-colors"
+                />
+                <input
+                  id="ship-state"
+                  type="text"
+                  placeholder="State"
+                  readonly
+                  class="ship-input ship-state-field w-full rounded-2xl border border-cream/15 bg-transparent px-5 py-4 font-inter text-cream text-base placeholder:text-cream/30 outline-none transition-colors cursor-default"
+                />
+              </div>
+
+              <!-- ZIP -->
+              <input
+                id="ship-zip"
+                type="text"
+                inputmode="numeric"
+                maxlength="10"
+                placeholder="ZIP code"
+                autocomplete="postal-code"
+                class="ship-input w-full rounded-2xl border border-cream/15 bg-transparent px-5 py-4 font-inter text-cream text-base placeholder:text-cream/30 outline-none focus:border-cream/30 transition-colors"
+              />
+            </div>
+
+            <!-- Disclaimers -->
+            <p class="font-inter text-cream/40 text-sm mb-2 intake-body">PO Boxes cannot be used for medication delivery.</p>
+            <p class="font-inter text-cream/40 text-sm mb-7 intake-body">
+              Traveling to a state not listed? Contact
+              <a href="mailto:support@nimbushealthcare.com" class="text-teal hover:underline">support@nimbushealthcare.com</a>
+              for assistance.
+            </p>
+
+            <!-- Continue — hidden until required fields filled -->
+            <button id="step-16-continue" class="hidden w-full bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-base rounded-full px-10 py-4 transition-colors cursor-pointer">
+              Continue
+            </button>
+          </div>
+
+          <!-- ========== STEP 16: Collapsed ========== -->
+          <div id="step-16-collapsed" class="hidden">
+            <div class="flex items-center justify-between py-2">
+              <p class="font-montserrat text-cream/40 text-xs font-medium tracking-[0.12em] uppercase intake-label-sm">Shipping Address</p>
+              <button class="edit-step-btn flex items-center gap-2 font-inter text-cream/50 text-sm hover:text-cream transition-colors cursor-pointer" data-edit-step="16">
+                <span id="step-16-answer">Saved</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9.5 2.5l2 2-7 7H2.5v-2l7-7z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="border-t border-cream/5 mt-1 intake-border"></div>
+          </div>
+
+          <!-- ========== STEP 17: Confirmation ========== -->
+          <div id="step-17-active" class="hidden mt-10 pb-10">
+
+            <!-- Checkmark Icon -->
+            <div class="flex justify-center mb-7 mt-2">
+              <svg width="76" height="76" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg" class="confirm-check-svg">
+                <circle cx="38" cy="38" r="35" stroke="#F5F0EA" stroke-width="2"/>
+                <path d="M23 38l12 12 19-21" stroke="#F5F0EA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <!-- Heading -->
+            <h2 class="font-fraunces text-cream text-[clamp(38px,8vw,58px)] leading-[1.1] tracking-[-0.02em] text-center mb-5 intake-heading">
+              You're all set!
+            </h2>
+
+            <!-- Subtitle -->
+            <p class="font-inter text-cream/55 text-base leading-[1.7] text-center mb-8 mx-auto max-w-[380px] intake-body">
+              Your order is confirmed. A licensed provider will review your information and reach out within 24 hours.
+            </p>
+
+            <!-- What happens next card -->
+            <div class="confirm-next-card w-full rounded-2xl border border-cream/15 px-6 py-7">
+              <p class="font-inter text-cream font-bold text-base mb-5 intake-bold">What happens next?</p>
+              <ol class="flex flex-col gap-5">
+                <li class="flex items-start gap-4">
+                  <span class="font-inter font-bold text-sm text-cream shrink-0 w-4 intake-bold" style="line-height:1.6">1</span>
+                  <span class="font-inter text-cream/80 text-base leading-[1.6] intake-body">A licensed clinician reviews your profile</span>
+                </li>
+                <li class="flex items-start gap-4">
+                  <span class="font-inter font-bold text-sm text-cream shrink-0 w-4 intake-bold" style="line-height:1.6">2</span>
+                  <span class="font-inter text-cream/80 text-base leading-[1.6] intake-body">You'll receive a message within 24 hours</span>
+                </li>
+                <li class="flex items-start gap-4">
+                  <span class="font-inter font-bold text-sm text-cream shrink-0 w-4 intake-bold" style="line-height:1.6">3</span>
+                  <span class="font-inter text-cream/80 text-base leading-[1.6] intake-body">If approved, your medication ships to your door</span>
+                </li>
+                <li class="flex items-start gap-4">
+                  <span class="font-inter font-bold text-sm text-cream shrink-0 w-4 intake-bold" style="line-height:1.6">4</span>
+                  <span class="font-inter text-cream/80 text-base leading-[1.6] intake-body">Ongoing clinical support throughout your journey</span>
+                </li>
+              </ol>
+            </div>
+
           </div>
 
         </div>
@@ -422,29 +1469,26 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
     color: #2A9D8F;
   }
 
-  /* Step transitions */
+  /* Step transitions — subtle */
   .step-enter {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(8px);
   }
   .step-visible {
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.28s ease, transform 0.28s ease;
   }
   .step-exit {
     opacity: 0;
-    transform: translateY(-8px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition: opacity 0.15s ease;
   }
   .collapsed-enter {
     opacity: 0;
-    transform: translateY(8px);
   }
   .collapsed-visible {
     opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s;
+    transition: opacity 0.2s ease;
   }
 
   /* Light mode overrides */
@@ -595,6 +1639,184 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
     background: rgba(42, 157, 143, 0.08);
     color: #2A9D8F;
   }
+
+  /* Account setup step */
+  .account-input {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #F5F0EA;
+    background: transparent;
+    border: 1px solid rgba(245, 240, 234, 0.15);
+    border-radius: 14px;
+    padding: 20px 24px;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .account-input::placeholder {
+    color: rgba(245, 240, 234, 0.25);
+  }
+  .account-input:focus {
+    border-color: rgba(245, 240, 234, 0.35);
+  }
+  .account-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #F5F0EA;
+    background: transparent;
+    border: 1px solid rgba(245, 240, 234, 0.15);
+    border-radius: 9999px;
+    padding: 18px 24px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .account-social-btn:hover {
+    border-color: rgba(245, 240, 234, 0.35);
+    background: rgba(245, 240, 234, 0.04);
+  }
+  .light-mode .account-input {
+    color: #1A1816;
+    border-color: rgba(26, 24, 22, 0.15);
+  }
+  .light-mode .account-input::placeholder {
+    color: rgba(26, 24, 22, 0.3);
+  }
+  .light-mode .account-input:focus {
+    border-color: rgba(26, 24, 22, 0.35);
+  }
+  .light-mode .account-social-btn {
+    color: #1A1816;
+    border-color: rgba(26, 24, 22, 0.15);
+  }
+  .light-mode .account-social-btn:hover {
+    border-color: rgba(26, 24, 22, 0.35);
+    background: rgba(26, 24, 22, 0.04);
+  }
+
+  /* ===== Step 7: Plan / Pricing ===== */
+  .plan-med-card {
+    position: relative;
+    border: 1px solid rgba(245, 240, 234, 0.12);
+    border-radius: 20px;
+    padding: 20px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    background: transparent;
+  }
+  .plan-med-card:hover {
+    border-color: rgba(245, 240, 234, 0.25);
+  }
+  .plan-med-card.selected {
+    border-color: #2A9D8F;
+    background: rgba(42, 157, 143, 0.06);
+  }
+  .plan-card-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #2A9D8F;
+    margin-bottom: 14px;
+  }
+  .plan-card-badge.alt {
+    color: rgba(245, 240, 234, 0.4);
+  }
+  .commit-btn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 18px 8px;
+    border: 1px solid rgba(245, 240, 234, 0.12);
+    border-radius: 14px;
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    overflow: hidden;
+    min-height: 72px;
+  }
+  .commit-btn--popular {
+    padding-top: 26px;
+  }
+  .commit-btn:hover {
+    border-color: rgba(245, 240, 234, 0.25);
+  }
+  .commit-btn.selected {
+    border-color: #2A9D8F;
+    background: rgba(42, 157, 143, 0.06);
+  }
+  .commit-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #F5F0EA;
+  }
+  .commit-save {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(245, 240, 234, 0.45);
+  }
+  .commit-popular {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px 0;
+    background: rgba(42, 157, 143, 0.15);
+    color: rgba(42, 157, 143, 0.6);
+  }
+  .commit-btn.selected .commit-popular {
+    background: rgba(42, 157, 143, 0.25);
+    color: #2A9D8F;
+  }
+  .plan-included-box {
+    border: 1px solid rgba(245, 240, 234, 0.12);
+    border-radius: 16px;
+    padding: 20px;
+  }
+  .plan-summary-box {
+    border: 1px solid rgba(245, 240, 234, 0.12);
+    border-radius: 16px;
+    padding: 20px;
+  }
+  .light-mode .plan-med-card {
+    border-color: rgba(26, 24, 22, 0.12);
+  }
+  .light-mode .plan-med-card.selected {
+    border-color: #2A9D8F;
+    background: rgba(42, 157, 143, 0.06);
+  }
+  .light-mode .commit-btn {
+    border-color: rgba(26, 24, 22, 0.12);
+  }
+  .light-mode .commit-btn.selected {
+    border-color: #2A9D8F;
+    background: rgba(42, 157, 143, 0.06);
+  }
+  .light-mode .commit-label {
+    color: #1A1816;
+  }
+  .light-mode .plan-included-box,
+  .light-mode .plan-summary-box {
+    border-color: rgba(26, 24, 22, 0.12);
+  }
+
   .stepper-box {
     background: transparent;
   }
@@ -644,6 +1866,439 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
   .light-mode .intake-border {
     border-color: rgba(26, 24, 22, 0.08);
   }
+
+  /* ── Checkout Step (Step 8) ── */
+  .co-summary-box {
+    background: rgba(245, 240, 234, 0.04);
+    border: 1px solid rgba(245, 240, 234, 0.1);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+  .co-express-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+    border: none;
+  }
+  .co-express-btn:hover { opacity: 0.88; }
+  .co-express-btn--apple { background: #000; color: #fff; }
+  .co-express-btn--google { background: #fff; color: #1a1a1a; }
+  .co-express-btn--shop { background: #5433EB; color: #fff; }
+  .co-label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(245, 240, 234, 0.5);
+    margin-bottom: 6px;
+  }
+  .co-input {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #F5F0EA;
+    background: rgba(245, 240, 234, 0.05);
+    border: 1px solid rgba(245, 240, 234, 0.12);
+    border-radius: 12px;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .co-input::placeholder { color: rgba(245, 240, 234, 0.2); }
+  .co-input:focus { border-color: rgba(245, 240, 234, 0.3); }
+  .co-input--icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+  }
+  .co-input-bare {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #F5F0EA;
+    min-width: 0;
+  }
+  .co-input-bare::placeholder { color: rgba(245, 240, 234, 0.2); }
+
+  /* ── Comorbidity Checkboxes (Step 10) ── */
+  .comorbidity-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    border: 1px solid rgba(245, 240, 234, 0.12);
+    border-radius: 14px;
+    padding: 18px 20px;
+    background: rgba(245, 240, 234, 0.02);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+  }
+  .comorbidity-card:hover {
+    border-color: rgba(245, 240, 234, 0.25);
+    background: rgba(245, 240, 234, 0.04);
+  }
+  .comorbidity-card.selected {
+    border-color: rgba(42, 157, 143, 0.5);
+    background: rgba(42, 157, 143, 0.06);
+  }
+  .comorbidity-checkbox {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 1.5px solid rgba(245, 240, 234, 0.25);
+    background: transparent;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+  }
+  .comorbidity-card.selected .comorbidity-checkbox {
+    background: #2A9D8F;
+    border-color: #2A9D8F;
+  }
+  .comorbidity-check-icon {
+    display: none;
+  }
+  .comorbidity-card.selected .comorbidity-check-icon {
+    display: block;
+  }
+  /* Light mode */
+  .light-mode .comorbidity-card {
+    border-color: rgba(26, 24, 22, 0.12);
+    background: rgba(26, 24, 22, 0.02);
+  }
+  .light-mode .comorbidity-card:hover {
+    border-color: rgba(26, 24, 22, 0.25);
+    background: rgba(26, 24, 22, 0.04);
+  }
+  .light-mode .comorbidity-card.selected {
+    border-color: rgba(42, 157, 143, 0.5);
+    background: rgba(42, 157, 143, 0.08);
+  }
+  .light-mode .comorbidity-checkbox {
+    border-color: rgba(26, 24, 22, 0.25);
+  }
+
+  /* ── Sticky Header ── */
+  .intake-sticky-header {
+    background: #1A1816;
+  }
+  .light-mode .intake-sticky-header {
+    background: #F5F0EA;
+  }
+
+  /* ── Safety Question Cards (Step 9) ── */
+  .safety-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border: 1px solid rgba(245, 240, 234, 0.12);
+    border-radius: 14px;
+    padding: 18px 20px;
+    background: rgba(245, 240, 234, 0.02);
+  }
+  .safety-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(245, 240, 234, 0.18);
+    background: transparent;
+    color: rgba(245, 240, 234, 0.35);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .safety-btn:hover:not(.selected) {
+    border-color: rgba(245, 240, 234, 0.3);
+    color: rgba(245, 240, 234, 0.6);
+  }
+  /* No selected → teal (same as all other form selections) */
+  .safety-btn[data-answer="no"].selected {
+    background: rgba(42, 157, 143, 0.1);
+    border-color: #2A9D8F;
+    color: #2A9D8F;
+  }
+  /* Yes selected → red warning */
+  .safety-btn[data-answer="yes"].selected {
+    background: rgba(224, 82, 82, 0.1);
+    border-color: #E05252;
+    color: #E05252;
+  }
+  /* Light mode */
+  .light-mode .safety-card {
+    border-color: rgba(26, 24, 22, 0.12);
+    background: rgba(26, 24, 22, 0.02);
+  }
+  .light-mode .safety-btn {
+    border-color: rgba(26, 24, 22, 0.18);
+    color: rgba(26, 24, 22, 0.35);
+  }
+  .light-mode .safety-btn[data-answer="no"].selected {
+    background: rgba(42, 157, 143, 0.1);
+    border-color: #2A9D8F;
+    color: #2A9D8F;
+  }
+  .light-mode .safety-btn[data-answer="yes"].selected {
+    background: rgba(224, 82, 82, 0.1);
+    border-color: #E05252;
+    color: #E05252;
+  }
+
+  /* Light mode overrides for checkout step */
+  .light-mode .co-summary-box { background: rgba(26, 24, 22, 0.04); border-color: rgba(26, 24, 22, 0.1); }
+  .light-mode .co-label { color: rgba(26, 24, 22, 0.5); }
+  .light-mode .co-input { color: #1A1816; background: rgba(26, 24, 22, 0.05); border-color: rgba(26, 24, 22, 0.12); }
+  .light-mode .co-input::placeholder { color: rgba(26, 24, 22, 0.3); }
+  .light-mode .co-input:focus { border-color: rgba(26, 24, 22, 0.3); }
+  .light-mode .co-input-bare { color: #1A1816; }
+  .light-mode .co-input-bare::placeholder { color: rgba(26, 24, 22, 0.3); }
+  .light-mode .co-express-btn--apple { background: #1A1816; }
+
+  /* ── Step 11: Founder & Trust ── */
+  .founder-card {
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .trust-badges-card {
+    background: rgba(255, 255, 255, 0.03);
+  }
+  /* NABP logo: invert so it shows white on dark */
+  .nabp-logo {
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+  }
+
+  /* Light mode overrides for Step 11 */
+  .light-mode .founder-card {
+    background: rgba(26, 24, 22, 0.04);
+    border-color: rgba(26, 24, 22, 0.1);
+  }
+  .light-mode .trust-badges-card {
+    background: rgba(26, 24, 22, 0.04);
+    border-color: rgba(26, 24, 22, 0.1);
+  }
+  .light-mode .intake-divider-v {
+    background: rgba(26, 24, 22, 0.1);
+  }
+  .light-mode .nabp-logo {
+    filter: none;
+    opacity: 1;
+  }
+
+  /* ── Step 12: Medications ── */
+  .med-search-input {
+    color: #f5f0ea;
+    background: rgba(255,255,255,0.04);
+  }
+  .med-search-input:focus {
+    background: rgba(255,255,255,0.06);
+  }
+
+  /* Accordion body — hidden by default, revealed with max-height */
+  .med-cat-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .med-cat-body.med-cat-open {
+    max-height: 400px;
+  }
+
+  /* Medication pill */
+  .med-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(245,240,234,0.15);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: rgba(245,240,234,0.7);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .med-pill:hover {
+    border-color: rgba(245,240,234,0.35);
+    color: #f5f0ea;
+  }
+  .med-pill.selected {
+    background: rgba(42,157,143,0.12);
+    border-color: #2A9D8F;
+    color: #2A9D8F;
+  }
+
+  /* None/Continue button — default state */
+  .med-none-btn {
+    background: transparent;
+    color: rgba(245,240,234,0.45);
+    text-align: center;
+    border: none;
+    font-size: 15px;
+  }
+  .med-none-btn:hover {
+    color: rgba(245,240,234,0.7);
+  }
+
+  /* Continue button — active state (medications selected) */
+  .med-btn-active {
+    background: #b87a5d;
+    color: #f5f0ea;
+    border-radius: 999px;
+    font-size: 16px;
+    transition: background 0.2s;
+  }
+  .med-btn-active:hover {
+    background: #a56a4d;
+  }
+
+  /* Light mode overrides */
+  .light-mode .med-search-input {
+    color: #1A1816;
+    background: rgba(26,24,22,0.05);
+    border-color: rgba(26,24,22,0.12);
+  }
+  .light-mode .med-search-input::placeholder { color: rgba(26,24,22,0.3); }
+  .light-mode .med-pill {
+    border-color: rgba(26,24,22,0.15);
+    color: rgba(26,24,22,0.6);
+  }
+  .light-mode .med-pill:hover {
+    border-color: rgba(26,24,22,0.4);
+    color: #1A1816;
+  }
+  .light-mode .med-pill.selected {
+    background: rgba(42,157,143,0.08);
+    border-color: #2A9D8F;
+    color: #2A9D8F;
+  }
+  .light-mode .med-none-btn {
+    color: rgba(26,24,22,0.4);
+  }
+  .light-mode .med-none-btn:hover {
+    color: rgba(26,24,22,0.65);
+  }
+  .light-mode .med-cat-header {
+    border-color: rgba(26,24,22,0.12);
+    color: #1A1816;
+  }
+
+  /* ── Step 13: Allergies ── */
+  .allergy-textarea {
+    color: #f5f0ea;
+    background: rgba(255,255,255,0.04);
+    min-height: 140px;
+  }
+  .allergy-textarea:focus {
+    background: rgba(255,255,255,0.06);
+  }
+
+  /* Light mode */
+  .light-mode .allergy-textarea {
+    color: #1A1816;
+    background: rgba(26,24,22,0.04);
+    border-color: rgba(26,24,22,0.12);
+  }
+  .light-mode .allergy-textarea::placeholder { color: rgba(26,24,22,0.3); }
+  .light-mode .allergy-textarea:focus { border-color: rgba(26,24,22,0.25); }
+  .light-mode #allergy-none-btn { color: rgba(26,24,22,0.35); }
+  .light-mode #allergy-none-btn:hover { color: rgba(26,24,22,0.6); }
+
+  /* ── Step 14: ID Upload ── */
+  .id-upload-card {
+    background: rgba(255,255,255,0.03);
+    color: #f5f0ea;
+  }
+  .id-upload-card:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(245,240,234,0.3);
+  }
+  .id-upload-card:active {
+    background: rgba(255,255,255,0.08);
+  }
+  .id-card-selected {
+    border-color: #2A9D8F !important;
+    background: rgba(42,157,143,0.08) !important;
+  }
+
+  /* Light mode */
+  .light-mode .id-upload-card {
+    background: rgba(26,24,22,0.03);
+    border-color: rgba(26,24,22,0.12);
+  }
+  .light-mode .id-upload-card:hover {
+    background: rgba(26,24,22,0.06);
+    border-color: rgba(26,24,22,0.3);
+  }
+  .light-mode .id-upload-card span { color: #1A1816; }
+  .light-mode .id-upload-card svg { color: rgba(26,24,22,0.6) !important; }
+
+  /* ── Step 15: Body Photo Tips ── */
+  .photo-tips-card {
+    background: rgba(255,255,255,0.03);
+  }
+  .light-mode .photo-tips-card {
+    background: rgba(26,24,22,0.04);
+    border-color: rgba(26,24,22,0.12);
+  }
+
+  /* ── Step 16: Shipping Address ── */
+  .ship-input {
+    color: #f5f0ea;
+    background: rgba(255,255,255,0.04);
+  }
+  .ship-input:focus {
+    background: rgba(255,255,255,0.06);
+  }
+  .ship-state-field {
+    background: rgba(255,255,255,0.02) !important;
+    color: rgba(245,240,234,0.9);
+  }
+
+  /* Light mode */
+  .light-mode .ship-input {
+    color: #1A1816;
+    background: rgba(26,24,22,0.04);
+    border-color: rgba(26,24,22,0.12);
+  }
+  .light-mode .ship-input::placeholder { color: rgba(26,24,22,0.3); }
+  .light-mode .ship-input:focus { border-color: rgba(26,24,22,0.25); }
+  .light-mode .ship-state-field { color: rgba(26,24,22,0.8); background: rgba(26,24,22,0.02) !important; }
+
+  /* ── Step 17: Confirmation ── */
+  .confirm-next-card {
+    background: rgba(255,255,255,0.03);
+  }
+  .confirm-check-svg circle,
+  .confirm-check-svg path {
+    stroke: #F5F0EA;
+  }
+  .light-mode .confirm-next-card {
+    background: rgba(26,24,22,0.03);
+    border-color: rgba(26,24,22,0.12);
+  }
+  .light-mode .confirm-check-svg circle,
+  .light-mode .confirm-check-svg path {
+    stroke: #1A1816;
+  }
 </style>
 
 <script is:inline>
@@ -662,7 +2317,7 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
     var progressBar = document.getElementById('progress-bar');
 
     function updateProgress(step) {
-      var pct = Math.round((step / totalQuestions) * 100);
+      var pct = step === 17 ? 100 : Math.round((step / totalQuestions) * 100);
       progressBar.style.width = pct + '%';
       counter.textContent = pct + '%';
     }
@@ -699,10 +2354,10 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
 
     // Back button
     backBtn?.addEventListener('click', function() {
-      if (currentStep === 1) {
+      if (currentStep === 17) {
+        window.location.href = '/';
+      } else if (currentStep === 1) {
         window.location.href = '/get-started';
-      } else if (currentStep >= 3) {
-        showExitModal();
       } else {
         goToStep(currentStep - 1);
       }
@@ -726,55 +2381,49 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
 
     // Step navigation with transitions
     function goToStep(step) {
-      var totalSteps = 5;
+      var prevStep = currentStep;
+      var goingForward = step > prevStep;
+      var container = document.getElementById('intake-content');
 
-      // Exit current active step
-      for (var i = 1; i <= totalSteps; i++) {
-        var active = document.getElementById('step-' + i + '-active');
-        var collapsed = document.getElementById('step-' + i + '-collapsed');
-        if (active && !active.classList.contains('hidden')) {
-          active.classList.remove('step-visible');
-          active.classList.add('step-exit');
-        }
-        if (collapsed && !collapsed.classList.contains('hidden')) {
-          collapsed.classList.add('hidden');
-          collapsed.classList.remove('collapsed-visible', 'collapsed-enter');
-        }
+      // Fade out only the current active step
+      var prevActive = document.getElementById('step-' + prevStep + '-active');
+      if (prevActive && !prevActive.classList.contains('hidden')) {
+        prevActive.classList.remove('step-visible');
+        prevActive.classList.add('step-exit');
       }
 
-      // After exit animation, show new state
       setTimeout(function() {
-        for (var i = 1; i <= totalSteps; i++) {
-          var active = document.getElementById('step-' + i + '-active');
-          var collapsed = document.getElementById('step-' + i + '-collapsed');
-          if (active) {
-            active.classList.add('hidden');
-            active.classList.remove('step-exit', 'step-enter', 'step-visible');
+        // Hide the exited step
+        if (prevActive) {
+          prevActive.classList.add('hidden');
+          prevActive.classList.remove('step-exit', 'step-enter', 'step-visible');
+        }
+
+        if (goingForward) {
+          // Collapse only the step we just completed
+          var prevCollapsed = document.getElementById('step-' + prevStep + '-collapsed');
+          if (prevCollapsed) {
+            prevCollapsed.classList.remove('hidden');
+            prevCollapsed.classList.add('collapsed-enter');
+            requestAnimationFrame(function() {
+              requestAnimationFrame(function() {
+                prevCollapsed.classList.remove('collapsed-enter');
+                prevCollapsed.classList.add('collapsed-visible');
+              });
+            });
           }
-          if (collapsed) {
-            collapsed.classList.add('hidden');
-            collapsed.classList.remove('collapsed-enter', 'collapsed-visible');
+        } else {
+          // Going backward — un-collapse steps from current back to target
+          for (var i = step; i <= prevStep; i++) {
+            var c = document.getElementById('step-' + i + '-collapsed');
+            if (c) {
+              c.classList.add('hidden');
+              c.classList.remove('collapsed-visible', 'collapsed-enter');
+            }
           }
         }
 
-        // Show collapsed for completed steps
-        for (var i = 1; i < step; i++) {
-          var collapsed = document.getElementById('step-' + i + '-collapsed');
-          if (collapsed) {
-            collapsed.classList.remove('hidden');
-            collapsed.classList.add('collapsed-enter');
-            requestAnimationFrame(function(el) {
-              return function() {
-                requestAnimationFrame(function() {
-                  el.classList.remove('collapsed-enter');
-                  el.classList.add('collapsed-visible');
-                });
-              };
-            }(collapsed));
-          }
-        }
-
-        // Show active step with enter animation
+        // Show and animate the new active step
         var activeEl = document.getElementById('step-' + step + '-active');
         if (activeEl) {
           activeEl.classList.remove('hidden');
@@ -783,14 +2432,27 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
             requestAnimationFrame(function() {
               activeEl.classList.remove('step-enter');
               activeEl.classList.add('step-visible');
+
+              // Scroll the new step into view inside the scroll container
+              if (container) {
+                var containerRect = container.getBoundingClientRect();
+                var elRect = activeEl.getBoundingClientRect();
+                var scrollTarget = elRect.top - containerRect.top + container.scrollTop - 16;
+                container.scrollTo({ top: Math.max(0, scrollTarget), behavior: 'smooth' });
+              }
             });
           });
         }
 
         currentStep = step;
         updateProgress(step);
-        document.getElementById('intake-content').scrollTop = 0;
-      }, 250);
+
+        // Update back button label
+        var phaseLabel = document.getElementById('intake-phase');
+        if (phaseLabel) {
+          phaseLabel.textContent = step === 17 ? 'Exit' : 'Back';
+        }
+      }, 160);
     }
 
     // ===== STEP 1: State selection =====
@@ -803,9 +2465,19 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
         sessionStorage.setItem('intake_state', state);
         document.getElementById('step-1-answer').textContent = state;
 
+        // Hide "not on list" message if visible
+        var notMsg = document.getElementById('state-not-msg');
+        if (notMsg) notMsg.classList.add('hidden');
+
         // Advance to step 2 after brief delay
         setTimeout(function() { goToStep(2); }, 300);
       });
+    });
+
+    // "State not on the list?" — show message
+    document.getElementById('state-not-listed')?.addEventListener('click', function() {
+      var msg = document.getElementById('state-not-msg');
+      if (msg) msg.classList.remove('hidden');
     });
 
     // Edit buttons — go back to that step
@@ -917,8 +2589,471 @@ import logoBlack from '../assets/NB_br_Logo Black/NB_br_Logo Black_0325.png';
         document.querySelectorAll('#glp1-options .option-btn').forEach(function(b) { b.classList.remove('selected'); });
         btn.classList.add('selected');
         sessionStorage.setItem('intake_glp1', btn.getAttribute('data-value'));
-        // Future: setTimeout(function() { goToStep(6); }, 300);
+        document.getElementById('step-5-answer').textContent = btn.getAttribute('data-value');
+        setTimeout(function() { goToStep(6); }, 300);
       });
+    });
+
+    // ===== STEP 6: Account setup → step 7 =====
+    document.getElementById('step-6-continue')?.addEventListener('click', function() {
+      var email = document.getElementById('account-email').value.trim();
+      if (!email) { document.getElementById('account-email').focus(); return; }
+      sessionStorage.setItem('intake_email', email);
+      var ans = document.getElementById('step-6-answer');
+      if (ans) ans.textContent = email;
+      goToStep(7);
+    });
+
+    // ===== STEP 7: Plan / Pricing =====
+    var pricingData = {
+      sema:  { monthly: 179, '3month': 149, '6month': 129 },
+      tirz:  { monthly: 299, '3month': 249, '6month': 219 }
+    };
+    var selectedMed = 'sema';
+    var selectedCommit = '6month';
+
+    function updatePricing() {
+      var semaPrice = pricingData.sema[selectedCommit];
+      var tirzPrice = pricingData.tirz[selectedCommit];
+      document.getElementById('price-sema').textContent = '$' + semaPrice;
+      document.getElementById('price-tirz').textContent = '$' + tirzPrice;
+
+      var activePrice = selectedMed === 'sema' ? semaPrice : tirzPrice;
+      var activeName = selectedMed === 'sema'
+        ? 'Compounded Semaglutide + L-Carnitine (CarniSema\u00ae)'
+        : 'Compounded Tirzepatide + L-Carnitine (CarniTide\u00ae)';
+      document.getElementById('summary-product-name').textContent = activeName;
+      document.getElementById('summary-product-price').textContent = '$' + activePrice + '/mo';
+      document.getElementById('summary-due').textContent = '$' + activePrice;
+    }
+
+    // Medication card selection
+    document.querySelectorAll('.plan-med-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        document.querySelectorAll('.plan-med-card').forEach(function(c) { c.classList.remove('selected'); });
+        card.classList.add('selected');
+        selectedMed = card.getAttribute('data-med');
+        updatePricing();
+      });
+    });
+
+    // Commitment toggle
+    document.querySelectorAll('.commit-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.commit-btn').forEach(function(b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        selectedCommit = btn.getAttribute('data-commit');
+        updatePricing();
+      });
+    });
+
+    // Tirzepatide: save 27% on 6-month
+    document.querySelector('.commit-btn[data-commit="6month"] .commit-save') && (function() {
+      // Update tirz save % dynamically handled in updatePricing via raw prices
+    })();
+
+    updatePricing();
+
+    // Step 7 CTA → step 8 checkout
+    document.getElementById('step-7-continue')?.addEventListener('click', function() {
+      var price = pricingData[selectedMed][selectedCommit];
+      var name = selectedMed === 'sema' ? 'CarniSema\u00ae' : 'CarniTide\u00ae';
+      var commitLabels = { monthly: 'Monthly Plan', '3month': '3-Month Plan', '6month': '6-Month Plan' };
+
+      // Update step-7 collapsed answer
+      var ans = document.getElementById('step-7-answer');
+      if (ans) ans.textContent = name + ' \u00b7 $' + price + '/mo';
+
+      // Populate step 8 order summary
+      var sumName = document.getElementById('co-summary-name');
+      var sumCommit = document.getElementById('co-summary-commit');
+      var sumPrice = document.getElementById('co-summary-price');
+      var sumDue = document.getElementById('co-summary-due');
+      if (sumName) sumName.textContent = name;
+      if (sumCommit) sumCommit.textContent = commitLabels[selectedCommit] || '6-Month Plan';
+      if (sumPrice) sumPrice.textContent = '$' + price + '/mo';
+      if (sumDue) sumDue.textContent = '$' + price;
+
+      // Pre-fill email from step 6
+      var email = document.getElementById('account-email')?.value;
+      var coEmail = document.getElementById('co-email');
+      if (email && coEmail) coEmail.value = email;
+
+      goToStep(8);
+    });
+
+    // ===== STEP 8: Checkout =====
+    // Card number formatting
+    document.getElementById('co-card')?.addEventListener('input', function(e) {
+      var v = e.target.value.replace(/\D/g, '').substring(0, 16);
+      e.target.value = v.replace(/(.{4})/g, '$1 ').trim();
+    });
+
+    // Expiry formatting
+    document.getElementById('co-expiry')?.addEventListener('input', function(e) {
+      var v = e.target.value.replace(/\D/g, '').substring(0, 4);
+      if (v.length >= 3) v = v.substring(0, 2) + ' / ' + v.substring(2);
+      e.target.value = v;
+    });
+
+    // Express checkout buttons
+    function handleExpressCheckout(method) {
+      var btnMap = { apple: 'co-btn-apple', google: 'co-btn-google', shop: 'co-btn-shop' };
+      var btn = document.getElementById(btnMap[method]);
+      if (btn) {
+        btn.querySelector('span').textContent = 'Processing...';
+        btn.disabled = true;
+      }
+    }
+    document.getElementById('co-btn-apple')?.addEventListener('click', function() { handleExpressCheckout('apple'); });
+    document.getElementById('co-btn-google')?.addEventListener('click', function() { handleExpressCheckout('google'); });
+    document.getElementById('co-btn-shop')?.addEventListener('click', function() { handleExpressCheckout('shop'); });
+
+    // Submit → step 9
+    document.getElementById('co-submit')?.addEventListener('click', function() {
+      var btn = this;
+      btn.textContent = 'Processing...';
+      btn.disabled = true;
+      var ans = document.getElementById('step-8-answer');
+      if (ans) ans.textContent = 'Card on file';
+      setTimeout(function() {
+        btn.textContent = 'Start my plan';
+        btn.disabled = false;
+        goToStep(9);
+      }, 900);
+    });
+
+    // ===== STEP 9: Safety Questions =====
+    document.querySelectorAll('.safety-card').forEach(function(card) {
+      card.querySelectorAll('.safety-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          card.querySelectorAll('.safety-btn').forEach(function(b) { b.classList.remove('selected'); });
+          btn.classList.add('selected');
+        });
+      });
+    });
+
+    document.getElementById('step-9-continue')?.addEventListener('click', function() {
+      goToStep(10);
+    });
+
+    // ===== STEP 10: Comorbidities =====
+    var selectedComorbidities = [];
+    var step10Continue = document.getElementById('step-10-continue');
+
+    document.querySelectorAll('.comorbidity-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        var val = card.getAttribute('data-value');
+        var isNone = card.classList.contains('comorbidity-card--none');
+
+        if (isNone) {
+          // "None of the above" — deselect everything else, select only this
+          document.querySelectorAll('.comorbidity-card').forEach(function(c) { c.classList.remove('selected'); });
+          card.classList.add('selected');
+          selectedComorbidities = ['None of the above'];
+        } else {
+          // Deselect "None of the above" if present
+          document.querySelector('.comorbidity-card--none')?.classList.remove('selected');
+          var noneIdx = selectedComorbidities.indexOf('None of the above');
+          if (noneIdx > -1) selectedComorbidities.splice(noneIdx, 1);
+          // Toggle this card
+          if (card.classList.contains('selected')) {
+            card.classList.remove('selected');
+            selectedComorbidities = selectedComorbidities.filter(function(v) { return v !== val; });
+          } else {
+            card.classList.add('selected');
+            selectedComorbidities.push(val);
+          }
+        }
+
+        // Show/hide continue button
+        if (selectedComorbidities.length > 0) {
+          step10Continue?.classList.remove('hidden');
+        } else {
+          step10Continue?.classList.add('hidden');
+        }
+      });
+    });
+
+    step10Continue?.addEventListener('click', function() {
+      sessionStorage.setItem('intake_comorbidities', JSON.stringify(selectedComorbidities));
+      var ans = document.getElementById('step-10-answer');
+      if (ans) ans.textContent = selectedComorbidities.length === 1 ? selectedComorbidities[0] : selectedComorbidities.length + ' conditions';
+      goToStep(11);
+    });
+
+    // ===== STEP 11: Meet the Founder =====
+    document.getElementById('step-11-continue')?.addEventListener('click', function() {
+      goToStep(12);
+    });
+
+    // ===== STEP 12: Current Medications =====
+    var selectedMedications = [];
+
+    // Accordion toggle
+    document.querySelectorAll('.med-cat-header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var category = header.closest('.med-category');
+        var body = category.querySelector('.med-cat-body');
+        var chevron = header.querySelector('.med-cat-chevron');
+        var isOpen = body.classList.contains('med-cat-open');
+        if (isOpen) {
+          body.classList.remove('med-cat-open');
+          chevron.style.transform = 'rotate(0deg)';
+        } else {
+          body.classList.add('med-cat-open');
+          chevron.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+
+    // Medication pill selection
+    document.querySelectorAll('.med-pill').forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        var med = pill.getAttribute('data-med');
+        if (pill.classList.contains('selected')) {
+          pill.classList.remove('selected');
+          selectedMedications = selectedMedications.filter(function(m) { return m !== med; });
+        } else {
+          pill.classList.add('selected');
+          selectedMedications.push(med);
+        }
+        updateMedBtn();
+      });
+    });
+
+    function updateMedBtn() {
+      var btn = document.getElementById('step-12-continue');
+      if (!btn) return;
+      if (selectedMedications.length > 0) {
+        btn.textContent = 'Continue (' + selectedMedications.length + ' selected)';
+        btn.classList.add('med-btn-active');
+        btn.classList.remove('med-none-btn');
+      } else {
+        btn.textContent = 'None \u2014 Continue';
+        btn.classList.remove('med-btn-active');
+        btn.classList.add('med-none-btn');
+      }
+    }
+
+    // Search / filter
+    document.getElementById('med-search')?.addEventListener('input', function() {
+      var query = this.value.trim().toLowerCase();
+      document.querySelectorAll('.med-category').forEach(function(cat) {
+        var pills = cat.querySelectorAll('.med-pill');
+        var anyMatch = false;
+        pills.forEach(function(pill) {
+          var name = pill.getAttribute('data-med').toLowerCase();
+          var match = !query || name.includes(query);
+          pill.style.display = match ? '' : 'none';
+          if (match) anyMatch = true;
+        });
+        // Show/hide category
+        cat.style.display = anyMatch ? '' : 'none';
+        // Auto-expand if searching
+        if (query && anyMatch) {
+          var body = cat.querySelector('.med-cat-body');
+          var chevron = cat.querySelector('.med-cat-chevron');
+          body.classList.add('med-cat-open');
+          chevron.style.transform = 'rotate(180deg)';
+        } else if (!query) {
+          // Restore collapsed state on clear
+          var body = cat.querySelector('.med-cat-body');
+          var chevron = cat.querySelector('.med-cat-chevron');
+          body.classList.remove('med-cat-open');
+          chevron.style.transform = 'rotate(0deg)';
+        }
+      });
+    });
+
+    // Step 12 continue
+    document.getElementById('step-12-continue')?.addEventListener('click', function() {
+      sessionStorage.setItem('intake_medications', JSON.stringify(selectedMedications));
+      var ans = document.getElementById('step-12-answer');
+      if (ans) ans.textContent = selectedMedications.length > 0 ? selectedMedications.length + ' selected' : 'None';
+      goToStep(13);
+    });
+
+    // ===== STEP 13: Allergies =====
+    var allergyInput = document.getElementById('allergy-input');
+    var allergyNoneBtn = document.getElementById('allergy-none-btn');
+    var step13Continue = document.getElementById('step-13-continue');
+
+    function updateAllergyBtn() {
+      var val = allergyInput ? allergyInput.value.trim() : '';
+      if (val.length > 0) {
+        step13Continue?.classList.remove('hidden');
+      } else {
+        step13Continue?.classList.add('hidden');
+      }
+    }
+
+    allergyInput?.addEventListener('input', updateAllergyBtn);
+
+    allergyNoneBtn?.addEventListener('click', function() {
+      if (allergyInput) {
+        allergyInput.value = 'None';
+        updateAllergyBtn();
+        allergyInput.focus();
+      }
+    });
+
+    step13Continue?.addEventListener('click', function() {
+      var val = allergyInput ? allergyInput.value.trim() : 'None';
+      sessionStorage.setItem('intake_allergies', val);
+      var ans = document.getElementById('step-13-answer');
+      if (ans) ans.textContent = val.length > 20 ? val.substring(0, 20) + '…' : val;
+      goToStep(14);
+    });
+
+    // ===== STEP 14: ID Verification =====
+    var idCameraInput = document.getElementById('id-camera-input');
+    var idFileInput = document.getElementById('id-file-input');
+    var idPreview = document.getElementById('id-preview');
+    var idPreviewImg = document.getElementById('id-preview-img');
+    var idPreviewName = document.getElementById('id-preview-name');
+    var step14Continue = document.getElementById('step-14-continue');
+
+    document.getElementById('id-take-photo')?.addEventListener('click', function() {
+      idCameraInput?.click();
+    });
+
+    document.getElementById('id-upload-file')?.addEventListener('click', function() {
+      idFileInput?.click();
+    });
+
+    function handleIdFile(file) {
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        if (idPreviewImg) idPreviewImg.src = e.target.result;
+        if (idPreviewName) idPreviewName.textContent = file.name;
+        idPreview?.classList.remove('hidden');
+        step14Continue?.classList.remove('hidden');
+        // Mark selected cards
+        document.querySelectorAll('.id-upload-card').forEach(function(c) { c.classList.remove('id-card-selected'); });
+      };
+      reader.readAsDataURL(file);
+    }
+
+    idCameraInput?.addEventListener('change', function() {
+      if (this.files && this.files[0]) handleIdFile(this.files[0]);
+    });
+
+    idFileInput?.addEventListener('change', function() {
+      if (this.files && this.files[0]) handleIdFile(this.files[0]);
+    });
+
+    document.getElementById('id-clear')?.addEventListener('click', function() {
+      if (idPreviewImg) idPreviewImg.src = '';
+      if (idPreviewName) idPreviewName.textContent = '';
+      idPreview?.classList.add('hidden');
+      step14Continue?.classList.add('hidden');
+      if (idCameraInput) idCameraInput.value = '';
+      if (idFileInput) idFileInput.value = '';
+    });
+
+    step14Continue?.addEventListener('click', function() {
+      sessionStorage.setItem('intake_id_uploaded', 'true');
+      goToStep(15);
+    });
+
+    // ===== STEP 15: Body Photo =====
+    var bodyCameraInput = document.getElementById('body-camera-input');
+    var bodyFileInput = document.getElementById('body-file-input');
+    var bodyPreview = document.getElementById('body-preview');
+    var bodyPreviewImg = document.getElementById('body-preview-img');
+    var bodyPreviewName = document.getElementById('body-preview-name');
+    var step15Continue = document.getElementById('step-15-continue');
+
+    document.getElementById('body-take-photo')?.addEventListener('click', function() {
+      bodyCameraInput?.click();
+    });
+
+    document.getElementById('body-upload-file')?.addEventListener('click', function() {
+      bodyFileInput?.click();
+    });
+
+    function handleBodyFile(file) {
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        if (bodyPreviewImg) bodyPreviewImg.src = e.target.result;
+        if (bodyPreviewName) bodyPreviewName.textContent = file.name;
+        bodyPreview?.classList.remove('hidden');
+        step15Continue?.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    bodyCameraInput?.addEventListener('change', function() {
+      if (this.files && this.files[0]) handleBodyFile(this.files[0]);
+    });
+
+    bodyFileInput?.addEventListener('change', function() {
+      if (this.files && this.files[0]) handleBodyFile(this.files[0]);
+    });
+
+    document.getElementById('body-clear')?.addEventListener('click', function() {
+      if (bodyPreviewImg) bodyPreviewImg.src = '';
+      if (bodyPreviewName) bodyPreviewName.textContent = '';
+      bodyPreview?.classList.add('hidden');
+      step15Continue?.classList.add('hidden');
+      if (bodyCameraInput) bodyCameraInput.value = '';
+      if (bodyFileInput) bodyFileInput.value = '';
+    });
+
+    step15Continue?.addEventListener('click', function() {
+      sessionStorage.setItem('intake_body_photo_uploaded', 'true');
+      // Pre-fill state from step 1 selection
+      var stateField = document.getElementById('ship-state');
+      if (stateField) {
+        var savedState = sessionStorage.getItem('intake_state') || '';
+        stateField.value = savedState;
+      }
+      goToStep(16);
+    });
+
+    // ===== STEP 16: Shipping Address =====
+    var shipFields = ['ship-street', 'ship-city', 'ship-zip'];
+
+    function checkShipForm() {
+      var allFilled = shipFields.every(function(id) {
+        var el = document.getElementById(id);
+        return el && el.value.trim().length > 0;
+      });
+      var btn = document.getElementById('step-16-continue');
+      if (btn) {
+        if (allFilled) btn.classList.remove('hidden');
+        else btn.classList.add('hidden');
+      }
+    }
+
+    ['ship-street', 'ship-apt', 'ship-city', 'ship-zip'].forEach(function(id) {
+      document.getElementById(id)?.addEventListener('input', checkShipForm);
+    });
+
+    // ZIP: digits only
+    document.getElementById('ship-zip')?.addEventListener('input', function() {
+      this.value = this.value.replace(/[^\d-]/g, '');
+    });
+
+    document.getElementById('step-16-continue')?.addEventListener('click', function() {
+      var address = {
+        street: document.getElementById('ship-street')?.value.trim(),
+        apt: document.getElementById('ship-apt')?.value.trim(),
+        city: document.getElementById('ship-city')?.value.trim(),
+        state: document.getElementById('ship-state')?.value.trim(),
+        zip: document.getElementById('ship-zip')?.value.trim()
+      };
+      sessionStorage.setItem('intake_shipping', JSON.stringify(address));
+      var ans = document.getElementById('step-16-answer');
+      if (ans) {
+        ans.textContent = (address.city && address.state)
+          ? address.city + ', ' + address.state
+          : 'Saved';
+      }
+      goToStep(17);
     });
 
   })();
