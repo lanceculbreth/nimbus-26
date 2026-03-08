@@ -40,34 +40,34 @@ const slides = [
 ];
 ---
 
-<section class="bg-cream py-24 overflow-hidden" data-animate>
+<section class="bg-cream py-16 md:py-24 overflow-hidden" data-animate>
   <!-- Header -->
-  <div id="bio-header" class="max-w-[1200px] mx-auto px-[10px] mb-16 flex items-end justify-between">
+  <div id="bio-header" class="max-w-[1200px] mx-auto px-5 md:px-[10px] mb-10 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
     <div>
       <p class="font-inter text-terracotta text-base mb-3">Moving from struggle to science.</p>
-      <h2 class="font-fraunces text-dark text-[clamp(40px,5vw,72px)] leading-[1.05] tracking-[-0.02em]">
+      <h2 class="font-fraunces text-dark text-[clamp(32px,5vw,72px)] leading-[1.05] tracking-[-0.02em]">
         It's your biology.
       </h2>
     </div>
-    <a href="/get-started" class="shrink-0 bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-sm rounded-full px-8 py-4 inline-block transition-colors mb-2">
+    <a href="/get-started" class="shrink-0 bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-sm rounded-full px-8 py-4 inline-block transition-colors md:mb-2 w-fit">
       Find your path
     </a>
   </div>
 
   <!-- Carousel -->
   <div class="relative overflow-hidden">
-    <div id="bio-track" class="flex gap-6 transition-transform duration-500 ease-in-out">
+    <div id="bio-track" class="flex gap-4 md:gap-6 transition-transform duration-500 ease-in-out">
       {slides.map((slide) => (
-        <div class="shrink-0 w-[500px]">
-          <div class="rounded-2xl overflow-hidden mb-5">
+        <div class="bio-slide shrink-0 w-[calc(100vw-40px)] md:w-[500px]">
+          <div class="rounded-2xl overflow-hidden mb-4 md:mb-5">
             <img
               src={slide.image.src}
               alt={slide.title}
-              class="w-[500px] h-[500px] object-cover"
+              class="w-full h-[350px] md:h-[500px] object-cover"
               loading="lazy"
             />
           </div>
-          <h3 class="font-inter text-dark text-lg font-bold mb-2 px-1">{slide.title}</h3>
+          <h3 class="font-inter text-dark text-base md:text-lg font-bold mb-2 px-1">{slide.title}</h3>
           <p class="font-inter text-dark/60 text-sm leading-[1.6] px-1">{slide.description}</p>
         </div>
       ))}
@@ -113,9 +113,15 @@ const slides = [
     var progress = document.getElementById('bio-progress');
     var current = 0;
     var total = 6;
-    var cardWidth = 500;
-    var gap = 24;
     var DURATION = 4;
+
+    function getSlideMetrics() {
+      var slide = track.querySelector('.bio-slide');
+      if (!slide) return { cardWidth: 500, gap: 24 };
+      var w = slide.getBoundingClientRect().width;
+      var g = parseFloat(getComputedStyle(track).gap) || 24;
+      return { cardWidth: w, gap: g };
+    }
 
     function getLeftStart() {
       if (header) {
@@ -123,11 +129,12 @@ const slides = [
         var padding = parseFloat(getComputedStyle(header).paddingLeft);
         return rect.left + padding;
       }
-      return 10;
+      return 20;
     }
 
     function getOffset(index) {
-      return -(index * (cardWidth + gap)) + getLeftStart();
+      var m = getSlideMetrics();
+      return -(index * (m.cardWidth + m.gap)) + getLeftStart();
     }
 
     function startProgress() {
@@ -147,14 +154,12 @@ const slides = [
       startProgress();
     }
 
-    // Auto-advance when progress bar finishes
     progress.addEventListener('transitionend', function(e) {
       if (e.propertyName === 'width' && progress.style.width === '100%') {
         goTo(current + 1);
       }
     });
 
-    // Set initial carousel position (no transition)
     track.style.transition = 'none';
     track.style.transform = 'translateX(' + getLeftStart() + 'px)';
     requestAnimationFrame(function() {
@@ -163,7 +168,6 @@ const slides = [
       });
     });
 
-    // Only start autoplay once the section scrolls into view
     var section = track.closest('section');
     var hasStarted = false;
     var observer = new IntersectionObserver(function(entries) {
@@ -179,6 +183,51 @@ const slides = [
 
     prevBtn?.addEventListener('click', function() { goTo(current - 1); });
     nextBtn?.addEventListener('click', function() { goTo(current + 1); });
+
+    // Touch swipe
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var touchDeltaX = 0;
+    var isSwiping = false;
+    var swipeThreshold = 50;
+
+    track.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchDeltaX = 0;
+      isSwiping = false;
+      progress.style.transition = 'none';
+      track.style.transition = 'none';
+    }, { passive: true });
+
+    track.addEventListener('touchmove', function(e) {
+      var dx = e.touches[0].clientX - touchStartX;
+      var dy = e.touches[0].clientY - touchStartY;
+      if (!isSwiping && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+        isSwiping = true;
+      }
+      if (isSwiping) {
+        e.preventDefault();
+        touchDeltaX = dx;
+        track.style.transform = 'translateX(' + (getOffset(current) + touchDeltaX) + 'px)';
+      }
+    }, { passive: false });
+
+    track.addEventListener('touchend', function() {
+      track.style.transition = 'transform 0.5s ease-in-out';
+      if (isSwiping) {
+        if (touchDeltaX < -swipeThreshold) {
+          goTo(current + 1);
+        } else if (touchDeltaX > swipeThreshold) {
+          goTo(current - 1);
+        } else {
+          track.style.transform = 'translateX(' + getOffset(current) + 'px)';
+          startProgress();
+        }
+      }
+      isSwiping = false;
+      touchDeltaX = 0;
+    }, { passive: true });
 
     window.addEventListener('resize', function() {
       track.style.transition = 'none';
