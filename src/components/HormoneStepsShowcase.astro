@@ -30,14 +30,10 @@ const steps = [
 
 <section class="py-24 overflow-hidden">
   <!-- Header -->
-  <div class="max-w-[1200px] mx-auto px-[10px] text-center mb-16" data-animate>
-    <div class="flex items-center justify-center gap-3 mb-4">
-      <div class="w-12 h-[2px] bg-teal"></div>
-      <span class="font-montserrat text-teal text-sm font-semibold tracking-[0.15em] uppercase">The Platform</span>
-      <div class="w-12 h-[2px] bg-teal"></div>
-    </div>
+  <div class="max-w-[1200px] mx-auto px-[10px] mb-16" data-animate>
+    <p class="font-inter text-teal text-base mb-3">How it works</p>
     <h2 class="font-fraunces text-cream text-[clamp(40px,5vw,72px)] leading-[1.05] tracking-[-0.02em]">
-      Your care, in one place.
+      Five steps to a <span class="text-teal">better</span> you.
     </h2>
   </div>
 
@@ -46,7 +42,7 @@ const steps = [
     <div id="hormone-showcase-carousel" class="overflow-visible">
       <div id="hormone-showcase-track" class="flex gap-5 transition-transform duration-500 ease-in-out">
         {steps.map((step) => (
-          <div class="shrink-0 w-[1100px]">
+          <div class="shrink-0 w-[700px]">
             <div class="rounded-2xl bg-[#22201E] h-[480px] flex flex-col justify-between p-12">
               <span class="font-fraunces text-teal/20 text-[160px] leading-none tracking-[-0.04em] select-none">
                 {step.number}
@@ -109,7 +105,7 @@ const steps = [
     var dots = document.querySelectorAll('.hormone-showcase-dot');
     var current = 0; // start on first step
     var total = dots.length;
-    var cardWidth = 1100;
+    var cardWidth = 700;
     var gap = 20;
 
     function getOffset(index) {
