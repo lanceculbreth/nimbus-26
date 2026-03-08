@@ -30,7 +30,7 @@ const steps = [
 
 <section class="pt-24 pb-20" data-animate>
   <!-- Header -->
-  <div id="steps-header" class="max-w-[1200px] mx-auto px-[10px] mb-10">
+  <div id="steps-header" class="max-w-[1200px] mx-auto px-4 md:px-[10px] mb-10">
     <div class="flex items-end justify-between">
       <div>
         <p class="font-inter text-teal text-base mb-3">How it works</p>
@@ -102,8 +102,9 @@ const steps = [
 
   function alignStepsCarousel() {
     if (header && carousel) {
-      const left = header.getBoundingClientRect().left + 10;
-      carousel.style.paddingLeft = left + 'px';
+      const rect = header.getBoundingClientRect();
+      const padding = parseFloat(getComputedStyle(header).paddingLeft);
+      carousel.style.paddingLeft = (rect.left + padding) + 'px';
     }
   }
 
