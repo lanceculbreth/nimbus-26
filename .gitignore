@@ -31,3 +31,4 @@ src/assets/[4] Product Imagery & Video/*.psd
 
 # Large mp4 files (>100MB) — use LFS or external hosting
 public/videos/snap-hero.mp4
+.vercel

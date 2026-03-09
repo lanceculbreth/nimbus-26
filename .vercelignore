@@ -1,1 +1,7 @@
-
+# Large source assets — not needed for Vercel build
+src/assets/[8] Videos/
+src/assets/[4] Product Imagery & Video/*.psd
+src/assets/[4] Product Imagery & Video/*.mp4
+src/assets/[4] Product Imagery & Video/Mobile App/*.psd
+src/assets/images/hero-bg.jpg
+node_modules
