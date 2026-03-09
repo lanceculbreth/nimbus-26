@@ -25,12 +25,12 @@ const slides = [
     <div id="product-carousel" class="overflow-visible">
       <div id="product-track" class="flex gap-5 transition-transform duration-500 ease-in-out">
         {slides.map((slide) => (
-          <div class="shrink-0 w-[1200px]">
+          <div class="product-slide shrink-0 w-[calc(100vw-40px)] md:w-[1200px]">
             <div class="rounded-2xl overflow-hidden">
               <img
                 src={slide.image}
                 alt={slide.alt}
-                class="w-full h-[700px] object-cover object-top"
+                class="w-full h-[300px] md:h-[700px] object-cover object-top"
                 loading="lazy"
               />
             </div>
@@ -71,13 +71,20 @@ const slides = [
     var nextBtn = document.getElementById('product-next');
     var current = 0;
     var total = 4;
-    var cardWidth = 1200;
-    var gap = 20;
+
+    function getSlideMetrics() {
+      var slide = track.querySelector('.product-slide');
+      if (!slide) return { cardWidth: 1200, gap: 20 };
+      var w = slide.getBoundingClientRect().width;
+      var g = parseFloat(getComputedStyle(track).gap) || 20;
+      return { cardWidth: w, gap: g };
+    }
 
     function getOffset(index) {
+      var m = getSlideMetrics();
       var vw = window.innerWidth;
-      var centerOffset = (vw - cardWidth) / 2;
-      return -(index * (cardWidth + gap)) + centerOffset;
+      var centerOffset = (vw - m.cardWidth) / 2;
+      return -(index * (m.cardWidth + m.gap)) + centerOffset;
     }
 
     function goTo(index) {
@@ -97,6 +104,49 @@ const slides = [
 
     prevBtn?.addEventListener('click', function() { goTo(current - 1); });
     nextBtn?.addEventListener('click', function() { goTo(current + 1); });
+
+    // Touch / swipe support
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var touchDeltaX = 0;
+    var isSwiping = false;
+    var swipeThreshold = 50;
+
+    track.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchDeltaX = 0;
+      isSwiping = false;
+      track.style.transition = 'none';
+    }, { passive: true });
+
+    track.addEventListener('touchmove', function(e) {
+      var dx = e.touches[0].clientX - touchStartX;
+      var dy = e.touches[0].clientY - touchStartY;
+      if (!isSwiping && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+        isSwiping = true;
+      }
+      if (isSwiping) {
+        e.preventDefault();
+        touchDeltaX = dx;
+        track.style.transform = 'translateX(' + (getOffset(current) + touchDeltaX) + 'px)';
+      }
+    }, { passive: false });
+
+    track.addEventListener('touchend', function() {
+      track.style.transition = 'transform 0.5s ease-in-out';
+      if (isSwiping) {
+        if (touchDeltaX < -swipeThreshold) {
+          goTo(current + 1);
+        } else if (touchDeltaX > swipeThreshold) {
+          goTo(current - 1);
+        } else {
+          track.style.transform = 'translateX(' + getOffset(current) + 'px)';
+        }
+      }
+      isSwiping = false;
+      touchDeltaX = 0;
+    }, { passive: true });
 
     window.addEventListener('resize', function() {
       track.style.transition = 'none';
