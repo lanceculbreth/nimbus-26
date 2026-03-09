@@ -10,11 +10,13 @@ const steps = [
     number: '02',
     title: 'Get Comprehensive Labs',
     description: 'A full 70+ biomarker panel at a nearby lab or via at-home blood draw — everything your provider needs.',
+    image: '/images/hormone-step-02.png',
   },
   {
     number: '03',
     title: 'Meet Your Clinician',
     description: 'A licensed specialist explains your results in plain language and builds your personalized plan via video.',
+    video: '/videos/meet-clinician.mp4',
   },
   {
     number: '04',
@@ -44,7 +46,18 @@ const steps = [
       <div id="hormone-showcase-track" class="flex gap-4 md:gap-5 transition-transform duration-500 ease-in-out">
         {steps.map((step) => (
           <div class="hormone-showcase-slide shrink-0 w-[calc(100vw-40px)] md:w-[700px]">
-            {step.image ? (
+            {step.video ? (
+              <div class="relative rounded-2xl h-[380px] md:h-[480px] overflow-hidden mb-4 md:mb-5">
+                <video
+                  src={step.video}
+                  class="w-full h-full object-cover"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                />
+              </div>
+            ) : step.image ? (
               <div class="relative rounded-2xl h-[380px] md:h-[480px] overflow-hidden mb-4 md:mb-5">
                 <img src={step.image} alt={step.title} class="w-full h-full object-cover object-top" />
                 <div class="absolute inset-0 bg-dark/20"></div>
