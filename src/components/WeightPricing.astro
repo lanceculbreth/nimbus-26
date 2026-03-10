@@ -39,12 +39,13 @@ const features = [
       </div>
     </div>
 
-    <!-- Pricing Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-[500px] md:max-w-none mx-auto w-full" data-animate data-delay="1">
+    <!-- Pricing Cards: carousel on mobile, grid on desktop -->
+    <!-- Desktop grid (hidden on mobile) -->
+    <div class="hidden md:grid md:grid-cols-3 gap-6" data-animate data-delay="1">
 
       <!-- 3-Month Card -->
       <div class="bg-cream rounded-2xl flex flex-col">
-        <div class="p-6 pb-6 md:p-10 md:pb-8">
+        <div class="p-10 pb-8">
           <p class="font-inter text-dark font-semibold text-sm mb-10">
             3-Month <span class="font-normal text-dark/50" data-save="3mo">save 17%</span>
           </p>
@@ -55,8 +56,7 @@ const features = [
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.
           </p>
         </div>
-
-        <div class="px-6 md:px-10 py-6 flex flex-col gap-4 flex-1 border-t border-dark/8">
+        <div class="px-10 py-6 flex flex-col gap-4 flex-1 border-t border-dark/8">
           {features.map(f => (
             <div class="flex items-start gap-3">
               <svg class="w-5 h-5 mt-0.5 shrink-0 text-teal" viewBox="0 0 20 20" fill="none">
@@ -67,8 +67,7 @@ const features = [
             </div>
           ))}
         </div>
-
-        <div class="p-6 pt-4 md:p-10 md:pt-6">
+        <div class="p-10 pt-6">
           <a href="/get-started" class="border border-dark/15 text-dark font-montserrat font-medium text-sm rounded-full py-4 text-center block hover:bg-dark/5 transition-colors">
             Get started
           </a>
@@ -77,7 +76,7 @@ const features = [
 
       <!-- 6-Month Card (Popular) -->
       <div class="bg-dark rounded-2xl flex flex-col">
-        <div class="p-6 pb-6 md:p-10 md:pb-8">
+        <div class="p-10 pb-8">
           <div class="flex items-center justify-between mb-10">
             <p class="font-inter text-cream font-semibold text-sm">
               6-Month <span class="font-normal text-cream/50" data-save="6mo">save 28%</span>
@@ -91,8 +90,7 @@ const features = [
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.
           </p>
         </div>
-
-        <div class="px-6 md:px-10 py-6 flex flex-col gap-4 flex-1 border-t border-cream/10">
+        <div class="px-10 py-6 flex flex-col gap-4 flex-1 border-t border-cream/10">
           {features.map(f => (
             <div class="flex items-start gap-3">
               <svg class="w-5 h-5 mt-0.5 shrink-0 text-teal" viewBox="0 0 20 20" fill="none">
@@ -103,8 +101,7 @@ const features = [
             </div>
           ))}
         </div>
-
-        <div class="p-6 pt-4 md:p-10 md:pt-6">
+        <div class="p-10 pt-6">
           <a href="/get-started" class="bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-sm rounded-full py-4 text-center block transition-colors">
             Get started
           </a>
@@ -113,7 +110,7 @@ const features = [
 
       <!-- Monthly Card -->
       <div class="bg-cream rounded-2xl flex flex-col">
-        <div class="p-6 pb-6 md:p-10 md:pb-8">
+        <div class="p-10 pb-8">
           <p class="font-inter text-dark font-semibold text-sm mb-10">
             Monthly
           </p>
@@ -124,8 +121,7 @@ const features = [
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.
           </p>
         </div>
-
-        <div class="px-6 md:px-10 py-6 flex flex-col gap-4 flex-1 border-t border-dark/8">
+        <div class="px-10 py-6 flex flex-col gap-4 flex-1 border-t border-dark/8">
           {features.map(f => (
             <div class="flex items-start gap-3">
               <svg class="w-5 h-5 mt-0.5 shrink-0 text-teal" viewBox="0 0 20 20" fill="none">
@@ -136,14 +132,126 @@ const features = [
             </div>
           ))}
         </div>
-
-        <div class="p-6 pt-4 md:p-10 md:pt-6">
+        <div class="p-10 pt-6">
           <a href="/get-started" class="border border-dark/15 text-dark font-montserrat font-medium text-sm rounded-full py-4 text-center block hover:bg-dark/5 transition-colors">
             Get started
           </a>
         </div>
       </div>
     </div>
+
+    <!-- Mobile carousel (hidden on desktop) -->
+    <div class="md:hidden" data-animate data-delay="1">
+      <div class="overflow-hidden" id="pricing-carousel">
+        <div class="flex gap-4 transition-transform duration-300 ease-out" id="pricing-track">
+
+          <!-- Slide 1: 6-Month Card (Popular) - FIRST on mobile -->
+          <div class="pricing-slide shrink-0 w-[calc(100vw-80px)] bg-dark rounded-2xl flex flex-col">
+            <div class="p-6 pb-6">
+              <div class="flex items-center justify-between mb-10">
+                <p class="font-inter text-cream font-semibold text-sm">
+                  6-Month <span class="font-normal text-cream/50" data-save="6mo">save 28%</span>
+                </p>
+                <span class="bg-teal text-cream font-montserrat text-xs font-semibold px-3.5 py-1 rounded-full">Popular</span>
+              </div>
+              <p class="font-fraunces text-cream text-[48px] leading-none font-bold">
+                <span data-price="6mo">$129</span><span class="text-cream/40 text-lg font-normal">/mo</span>
+              </p>
+              <p class="font-inter text-cream/50 text-sm leading-[1.6] mt-5">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.
+              </p>
+            </div>
+            <div class="px-6 py-6 flex flex-col gap-4 flex-1 border-t border-cream/10">
+              {features.map(f => (
+                <div class="flex items-start gap-3">
+                  <svg class="w-5 h-5 mt-0.5 shrink-0 text-teal" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="font-inter text-cream/80 text-xs">{f}</span>
+                </div>
+              ))}
+            </div>
+            <div class="p-6 pt-4">
+              <a href="/get-started" class="bg-terracotta hover:bg-terracotta-hover text-cream font-montserrat font-medium text-sm rounded-full py-4 text-center block transition-colors">
+                Get started
+              </a>
+            </div>
+          </div>
+
+          <!-- Slide 2: 3-Month Card -->
+          <div class="pricing-slide shrink-0 w-[calc(100vw-80px)] bg-cream rounded-2xl flex flex-col">
+            <div class="p-6 pb-6">
+              <p class="font-inter text-dark font-semibold text-sm mb-10">
+                3-Month <span class="font-normal text-dark/50" data-save="3mo">save 17%</span>
+              </p>
+              <p class="font-fraunces text-dark text-[48px] leading-none font-bold">
+                <span data-price="3mo">$149</span><span class="text-dark/40 text-lg font-normal">/mo</span>
+              </p>
+              <p class="font-inter text-dark/50 text-sm leading-[1.6] mt-5">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.
+              </p>
+            </div>
+            <div class="px-6 py-6 flex flex-col gap-4 flex-1 border-t border-dark/8">
+              {features.map(f => (
+                <div class="flex items-start gap-3">
+                  <svg class="w-5 h-5 mt-0.5 shrink-0 text-teal" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="font-inter text-dark/70 text-xs">{f}</span>
+                </div>
+              ))}
+            </div>
+            <div class="p-6 pt-4">
+              <a href="/get-started" class="border border-dark/15 text-dark font-montserrat font-medium text-sm rounded-full py-4 text-center block hover:bg-dark/5 transition-colors">
+                Get started
+              </a>
+            </div>
+          </div>
+
+          <!-- Slide 3: Monthly Card -->
+          <div class="pricing-slide shrink-0 w-[calc(100vw-80px)] bg-cream rounded-2xl flex flex-col">
+            <div class="p-6 pb-6">
+              <p class="font-inter text-dark font-semibold text-sm mb-10">
+                Monthly
+              </p>
+              <p class="font-fraunces text-dark text-[48px] leading-none font-bold">
+                <span data-price="monthly">$179</span><span class="text-dark/40 text-lg font-normal">/mo</span>
+              </p>
+              <p class="font-inter text-dark/50 text-sm leading-[1.6] mt-5">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.
+              </p>
+            </div>
+            <div class="px-6 py-6 flex flex-col gap-4 flex-1 border-t border-dark/8">
+              {features.map(f => (
+                <div class="flex items-start gap-3">
+                  <svg class="w-5 h-5 mt-0.5 shrink-0 text-teal" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="font-inter text-dark/70 text-xs">{f}</span>
+                </div>
+              ))}
+            </div>
+            <div class="p-6 pt-4">
+              <a href="/get-started" class="border border-dark/15 text-dark font-montserrat font-medium text-sm rounded-full py-4 text-center block hover:bg-dark/5 transition-colors">
+                Get started
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Dots -->
+      <div class="flex justify-center gap-2 mt-6">
+        <button class="pricing-dot w-2 h-2 rounded-full bg-dark transition-all" data-slide="0"></button>
+        <button class="pricing-dot w-2 h-2 rounded-full bg-dark/25 transition-all" data-slide="1"></button>
+        <button class="pricing-dot w-2 h-2 rounded-full bg-dark/25 transition-all" data-slide="2"></button>
+      </div>
+    </div>
+
   </div>
   </div>
 </section>
@@ -174,23 +282,15 @@ const features = [
 
   function setDrug(drug) {
     const data = pricingData[drug];
-
-    // Update heading
     if (drugNameEl) drugNameEl.textContent = data.name;
-
-    // Update prices
     section.querySelectorAll('[data-price]').forEach(el => {
       const key = el.dataset.price;
       if (data[key]) el.textContent = data[key];
     });
-
-    // Update save percentages
     section.querySelectorAll('[data-save]').forEach(el => {
       const key = el.dataset.save + '_save';
       if (data[key]) el.textContent = data[key];
     });
-
-    // Update toggle buttons
     toggleBtns.forEach(btn => {
       if (btn.dataset.drug === drug) {
         btn.classList.add('bg-cream', 'text-dark');
@@ -205,4 +305,67 @@ const features = [
   toggleBtns.forEach(btn => {
     btn.addEventListener('click', () => setDrug(btn.dataset.drug));
   });
+
+  // Mobile carousel
+  (function() {
+    var track = document.getElementById('pricing-track');
+    var dots = section.querySelectorAll('.pricing-dot');
+    if (!track || dots.length === 0) return;
+
+    var current = 0;
+    var total = 3;
+
+    function getSlideWidth() {
+      var slide = track.querySelector('.pricing-slide');
+      if (!slide) return 300;
+      return slide.getBoundingClientRect().width;
+    }
+
+    function goTo(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= total) idx = total - 1;
+      current = idx;
+      var w = getSlideWidth();
+      var gap = parseFloat(getComputedStyle(track).gap) || 16;
+      track.style.transform = 'translateX(' + (-(w + gap) * current) + 'px)';
+      dots.forEach(function(d, i) {
+        d.classList.toggle('bg-dark', i === current);
+        d.classList.toggle('bg-dark/25', i !== current);
+      });
+    }
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        goTo(parseInt(dot.dataset.slide));
+      });
+    });
+
+    // Touch/swipe
+    var startX = 0, startY = 0, isDragging = false, locked = false;
+    track.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      isDragging = true;
+      locked = false;
+    }, { passive: true });
+
+    track.addEventListener('touchmove', function(e) {
+      if (!isDragging) return;
+      var dx = e.touches[0].clientX - startX;
+      var dy = e.touches[0].clientY - startY;
+      if (!locked) {
+        if (Math.abs(dy) > Math.abs(dx)) { isDragging = false; return; }
+        locked = true;
+      }
+      e.preventDefault();
+    }, { passive: false });
+
+    track.addEventListener('touchend', function(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (dx < -40) goTo(current + 1);
+      else if (dx > 40) goTo(current - 1);
+    }, { passive: true });
+  })();
 </script>
