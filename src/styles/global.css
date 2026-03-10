@@ -12,6 +12,11 @@
   --color-terracotta-hover: #a56a4d;
 }
 
+/* ── Prevent double-tap zoom on mobile ── */
+* {
+  touch-action: manipulation;
+}
+
 /* ── Scroll Animations ── */
 
 [data-animate] {
