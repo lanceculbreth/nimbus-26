@@ -181,7 +181,22 @@
       "Bash(sort -k5 -rh)",
       "Bash(/Users/lanceculbreth/Documents/Claude_Nimbus_Site/.vercelignore:*)",
       "Bash(du -sh /Users/lanceculbreth/Documents/Claude_Nimbus_Site/src/assets/*/)",
-      "Bash(npx vercel project ls)"
+      "Bash(npx vercel project ls)",
+      "Bash(ls ~/Desktop/*.png)",
+      "Bash(ls -lt ~/Desktop/*.png)",
+      "Bash(git rm --cached \"src/assets/[8] Videos/Snap Hero.mp4\" \"src/assets/[4] Product Imagery & Video/Nimbus_Prod Hero.mp4\")",
+      "Bash(xargs ls -lh)",
+      "Bash(ls -lh \"src/assets/[4] Product Imagery & Video/NB_gr_Enclomiphene-Title_01_0226.psd\" \"src/assets/[4] Product Imagery & Video/NB_gr_Pregnyl-Title_01_0226.psd\")",
+      "Bash(ls -lh public/videos/*.mp4)",
+      "Bash(ls -lh public/images/hormone-step-0*.png)",
+      "Bash(ls -lh \"src/assets/[4] Product Imagery & Video/02. Get Comprehensive Labs.png\")",
+      "Bash(ls \"src/assets/[4] Product Imagery & Video/\")",
+      "Bash(ls -lh \"src/assets/[4] Product Imagery & Video/01. Complete Your Intake.png\" \"src/assets/[4] Product Imagery & Video/02. Get Comprehensive Labs.png\")",
+      "Bash(ls -lh \"src/assets/[4] Product Imagery & Video/Platform 1.png\" \"src/assets/[4] Product Imagery & Video/Platform 2.png\" \"src/assets/[4] Product Imagery & Video/Platform 3.png\" \"src/assets/[4] Product Imagery & Video/Platform 4.png\")",
+      "Bash(ls -lt \"src/assets/[4] Product Imagery & Video/\")",
+      "Bash(ls -lh \"src/assets/[4] Product Imagery & Video/01. Complete Your Intake.png\" \"src/assets/[4] Product Imagery & Video/02. Get Comprehensive Labs.png\" public/images/hormone-step-01.png public/images/hormone-step-02.png)",
+      "Bash(ls -lh \"src/assets/[4] Product Imagery & Video/Snap Kitchen Logo.png\")",
+      "Bash(ls -lh \"/Users/lanceculbreth/Documents/Claude_Nimbus_Site/src/assets/[4] Product Imagery & Video/Platform 1.png\")"
     ]
   }
 }
