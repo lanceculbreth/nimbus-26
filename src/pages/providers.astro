@@ -2,22 +2,49 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import ProvidersHero from '../components/ProvidersHero.astro';
+import ProvidersPainPoints from '../components/ProvidersPainPoints.astro';
 import ProvidersPlatform from '../components/ProvidersPlatform.astro';
-import ProvidersSteps from '../components/ProvidersSteps.astro';
+import ProvidersProtocol from '../components/ProvidersProtocol.astro';
+import ProvidersCompliance from '../components/ProvidersCompliance.astro';
+import ProvidersPersonas from '../components/ProvidersPersonas.astro';
 import ProvidersTestimonial from '../components/ProvidersTestimonial.astro';
 import ProvidersClinics from '../components/ProvidersClinics.astro';
+import ProvidersTrust from '../components/ProvidersTrust.astro';
 import ProvidersBottomCTA from '../components/ProvidersBottomCTA.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Nimbus Healthcare - Providers">
+<Layout title="NovaMed - Protocol Infrastructure for Modern Clinics | Nimbus Healthcare">
   <Navbar />
   <main>
+    <!-- 1. Hook: Protocol-first hero -->
     <ProvidersHero />
+
+    <!-- 2. Empathy: Problem-first storytelling -->
+    <ProvidersPainPoints />
+
+    <!-- 3. Solution: Platform features -->
     <ProvidersPlatform />
-    <ProvidersSteps />
+
+    <!-- 4. Journey: 8-step protocol lifecycle -->
+    <ProvidersProtocol />
+
+    <!-- 5. Social proof -->
     <ProvidersTestimonial />
+
+    <!-- 6. Moat: Vertical integration & compliance -->
+    <ProvidersCompliance />
+
+    <!-- 7. Targeting: Persona-specific value props -->
+    <ProvidersPersonas />
+
+    <!-- 8. Credibility: Clinic types + testimonial -->
     <ProvidersClinics />
+
+    <!-- 9. Trust: Medical board + stats -->
+    <ProvidersTrust />
+
+    <!-- 10. Convert: Dual CTA -->
     <ProvidersBottomCTA />
   </main>
   <div class="bg-[#1A1816] pb-[10px] px-[10px]">

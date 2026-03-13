@@ -1,0 +1,138 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Patient Intake & Qualification',
+    clinic: 'Custom intake forms capture medical history, contraindications, and treatment goals. Patients are auto-qualified based on your protocol criteria.',
+    patient: 'Simple digital intake from any device. No paperwork, no office visit required to start.',
+  },
+  {
+    number: '02',
+    title: 'Protocol Selection & Customization',
+    clinic: 'Choose from your protocol library or build custom treatment timelines with conditional logic, dosing schedules, and milestone checkpoints.',
+    patient: 'Matched to the right protocol based on their profile. Clear explanation of what to expect and when.',
+  },
+  {
+    number: '03',
+    title: 'Real-Time Compound Pricing',
+    clinic: 'Compare costs across pharmacy partners instantly. See pricing for every compound option before prescribing — full transparency.',
+    patient: 'Upfront pricing with no surprise bills. Knows exactly what they\'ll pay before treatment begins.',
+  },
+  {
+    number: '04',
+    title: 'Digital Rx to Pharmacy',
+    clinic: 'Prescription sent digitally to the selected pharmacy. No faxes, no phone calls, no delays. Pharmacy receives structured compound data.',
+    patient: 'Instant confirmation that their prescription has been sent. Real-time status from day one.',
+  },
+  {
+    number: '05',
+    title: 'Compounding & Quality Check',
+    clinic: 'Track compounding status in real time. Every batch tested. Every formulation verified against the original Rx.',
+    patient: 'Peace of mind knowing their medication is pharmacy-verified and quality-controlled.',
+  },
+  {
+    number: '06',
+    title: 'Shipping & Patient Notification',
+    clinic: 'Automated shipping notifications. No more "where\'s my order?" calls. Clinic dashboard shows delivery status for every patient.',
+    patient: 'Tracking updates via SMS and email. Knows exactly when their medication will arrive.',
+  },
+  {
+    number: '07',
+    title: 'Automated Refill Management',
+    clinic: 'Refill cycles managed automatically based on protocol timelines. Smart reminders drive adherence and recurring revenue.',
+    patient: 'Automatic refill reminders before they run out. One-tap renewal — no calls, no appointments needed.',
+  },
+  {
+    number: '08',
+    title: 'Outcome Tracking & Protocol Adjustment',
+    clinic: 'Monitor patient outcomes, lab trends, and adherence metrics. Adjust protocols based on data, not guesswork.',
+    patient: 'Track their own progress with biomarker trending, symptom logs, and milestone celebrations.',
+  },
+];
+---
+
+<section class="bg-[#1A1816] py-24 px-[10px]">
+  <div class="max-w-[1200px] mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-6" data-animate>
+      <p class="font-montserrat text-teal text-sm font-semibold tracking-[0.15em] uppercase mb-4">The Full Protocol Journey</p>
+      <h2 class="font-fraunces text-cream text-[clamp(36px,5vw,72px)] leading-[1.05] tracking-[-0.02em]">
+        Eight steps. Two perspectives.<br />
+        <em class="italic text-teal">One seamless workflow.</em>
+      </h2>
+    </div>
+
+    <div class="text-center max-w-[600px] mx-auto mb-16" data-animate data-delay="1">
+      <p class="font-inter text-cream/50 text-base leading-[1.6]">
+        Every step is visible to both your clinic and your patient — parallel views of the same treatment journey.
+      </p>
+    </div>
+
+    <!-- Perspective Labels (desktop) -->
+    <div class="hidden md:grid grid-cols-[1fr_56px_1fr] max-w-[960px] mx-auto mb-8" data-animate data-delay="2">
+      <div class="text-center">
+        <span class="font-montserrat text-teal text-xs font-semibold tracking-[0.2em] uppercase">Clinic View</span>
+      </div>
+      <div></div>
+      <div class="text-center">
+        <span class="font-montserrat text-terracotta text-xs font-semibold tracking-[0.2em] uppercase">Patient View</span>
+      </div>
+    </div>
+
+    <!-- Timeline Steps -->
+    <div class="relative max-w-[960px] mx-auto">
+      <!-- Center Line (desktop) -->
+      <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-cream/8 -translate-x-1/2"></div>
+
+      {steps.map((step) => (
+        <div class="relative mb-8 last:mb-0" data-animate>
+          {/* Step Number — center dot (desktop) */}
+          <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 top-6 w-12 h-12 rounded-full bg-[#1A1816] border border-cream/10 items-center justify-center z-10">
+            <span class="font-fraunces text-cream/60 text-base">{step.number}</span>
+          </div>
+
+          {/* Desktop: two columns always visible */}
+          <div class="hidden md:grid grid-cols-[1fr_56px_1fr] gap-0">
+            {/* Clinic side (left) */}
+            <div class="pr-6">
+              <div class="bg-[#22201E] rounded-2xl p-6 border border-teal/15 h-full">
+                <h3 class="font-inter text-cream font-semibold text-[15px] mb-2">{step.title}</h3>
+                <p class="font-inter text-cream/45 text-sm leading-[1.7]">{step.clinic}</p>
+              </div>
+            </div>
+
+            {/* Spacer for center line */}
+            <div class="w-14"></div>
+
+            {/* Patient side (right) */}
+            <div class="pl-6">
+              <div class="bg-[#22201E] rounded-2xl p-6 border border-terracotta/15 h-full">
+                <p class="font-inter text-cream/45 text-sm leading-[1.7]">{step.patient}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile: stacked layout */}
+          <div class="md:hidden">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-full bg-[#22201E] border border-cream/10 flex items-center justify-center shrink-0">
+                <span class="font-fraunces text-cream/60 text-sm">{step.number}</span>
+              </div>
+              <h3 class="font-inter text-cream font-semibold text-base">{step.title}</h3>
+            </div>
+            <div class="ml-[52px] space-y-3">
+              <div class="bg-[#22201E] rounded-xl p-4 border border-teal/15">
+                <span class="font-montserrat text-teal/50 text-[10px] tracking-widest uppercase block mb-1">Clinic</span>
+                <p class="font-inter text-cream/45 text-sm leading-[1.7]">{step.clinic}</p>
+              </div>
+              <div class="bg-[#22201E] rounded-xl p-4 border border-terracotta/15">
+                <span class="font-montserrat text-terracotta/50 text-[10px] tracking-widest uppercase block mb-1">Patient</span>
+                <p class="font-inter text-cream/45 text-sm leading-[1.7]">{step.patient}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
